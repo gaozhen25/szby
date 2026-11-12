@@ -1,0 +1,11 @@
+{
+  "conversation_id": "0:1:1001:2002",
+  "conversation_short_id": 7303822822667764275,
+  "conversation_ticket": "redacted-ticket",
+  "message_type": 7,
+  "content": "{\"text\":\"请问今天能发货吗\"}",
+  "server_message_id": "88001234",
+  "index_in_conversation": "42",
+  "sender": "2002",
+  "create_time_ms": 1788926500456
+}

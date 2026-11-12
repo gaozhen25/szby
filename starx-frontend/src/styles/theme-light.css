@@ -1,0 +1,247 @@
+/* Light-theme shell overrides for hardcoded dark surfaces */
+
+[data-theme="light"] .starfield {
+  display: none;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  background: var(--bg-input);
+}
+
+.theme-toggle button {
+  min-width: 52px;
+  height: 28px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.theme-toggle button:hover {
+  color: var(--text-primary);
+}
+
+.theme-toggle button.active {
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--border-accent);
+}
+
+.auth-theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+
+[data-theme="light"] .bar {
+  box-shadow: 0 1px 0 var(--border-subtle);
+}
+
+[data-theme="light"] .nav-item:hover,
+[data-theme="light"] .side-item:hover {
+  background: rgba(0, 150, 184, 0.06);
+}
+
+[data-theme="light"] .nav-dropdown,
+[data-theme="light"] .account-drop {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-medium);
+}
+
+[data-theme="light"] .avatar {
+  border-color: var(--bg-glass-nav);
+}
+
+[data-theme="light"] .modal {
+  background: var(--bg-card);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-xl);
+}
+
+[data-theme="light"] .modal-overlay {
+  background: rgba(232, 238, 247, 0.72);
+}
+
+[data-theme="light"] .pill {
+  border-color: var(--border-medium);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .pill:hover:not(:disabled):not(.active) {
+  background: var(--card-bg-soft);
+  border-color: var(--border-accent);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .pill.active,
+[data-theme="light"] .pill.active:hover:not(:disabled) {
+  background: rgba(0, 120, 145, 0.12);
+  border-color: #007891;
+  color: #005f72;
+  box-shadow: inset 0 0 0 1px rgba(0, 120, 145, 0.18);
+}
+
+[data-theme="light"] .topic-view-tabs button.active,
+[data-theme="light"] .topic-view-tabs button.active:hover {
+  background: rgba(0, 120, 145, 0.12);
+  color: #005f72;
+  box-shadow: inset 0 0 0 1px rgba(0, 120, 145, 0.22);
+}
+
+[data-theme="light"] .topic-view-tabs button.active span {
+  background: rgba(0, 120, 145, 0.14);
+  color: #005f72;
+}
+
+[data-theme="light"] .hl {
+  color: #007891;
+}
+
+[data-theme="light"] .auth-shell {
+  background: radial-gradient(circle at top, #eef5fb, var(--bg-deep) 70%);
+}
+
+[data-theme="light"] .auth-card {
+  background: var(--bg-card);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-xl);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 150, 184, 0.25);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 150, 184, 0.4);
+}
+
+[data-theme="light"] ::selection {
+  background: rgba(0, 150, 184, 0.22);
+}
+
+[data-theme="light"] input:focus,
+[data-theme="light"] select:focus,
+[data-theme="light"] textarea:focus {
+  border-color: var(--border-accent-strong);
+  background: var(--bg-input-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-dim);
+}
+
+[data-theme="light"] .loading-overlay::backdrop,
+[data-theme="light"] .loading-backdrop {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(0, 150, 184, 0.1), transparent 34%),
+    rgba(232, 238, 247, 0.78);
+}
+
+[data-theme="light"] .kim-extras-overlay {
+  background: rgba(232, 238, 247, 0.55);
+}
+
+[data-theme="light"] .workflow-publish-btn {
+  box-shadow: none;
+}
+
+/* Soften neon category accents for light theme readability */
+[data-theme="light"] .creation-tag-chip {
+  background: color-mix(in srgb, var(--category-color) 8%, #ffffff);
+  border-color: color-mix(in srgb, var(--category-color) 28%, var(--card-border));
+  color: #2a3548;
+}
+
+[data-theme="light"] .creation-tag-chip:hover,
+[data-theme="light"] .creation-tag-chip:focus-visible {
+  background: color-mix(in srgb, var(--category-color) 14%, #ffffff);
+  color: #152033;
+}
+
+[data-theme="light"] .creation-tag-chip.selected {
+  background: color-mix(in srgb, var(--category-color) 18%, #ffffff);
+  border-color: var(--category-color);
+  color: #152033;
+}
+
+[data-theme="light"] .creation-selected-chip {
+  background: color-mix(in srgb, var(--tag-color) 12%, #ffffff);
+  color: #152033;
+}
+
+[data-theme="light"] .creation-category-emoji {
+  background: color-mix(in srgb, var(--category-color) 12%, #ffffff);
+}
+
+[data-theme="light"] .upload-zone,
+[data-theme="light"] .material-upload-zone {
+  background: var(--card-bg-soft);
+  border-color: var(--card-border);
+}
+
+/* Knowledge base modal: light-theme polish */
+[data-theme="light"] .btn-primary,
+[data-theme="light"] .primary-btn {
+  color: #ffffff;
+}
+
+[data-theme="light"] .btn-primary:hover,
+[data-theme="light"] .primary-btn:hover {
+  color: #ffffff;
+  background: #0082a0;
+  border-color: #0082a0;
+  box-shadow: 0 6px 16px rgba(0, 150, 184, 0.22);
+}
+
+[data-theme="light"] .knowledge-modal-ux .knowledge-library-search {
+  background: #f0f5fa;
+  border-color: rgba(21, 32, 51, 0.1);
+}
+
+[data-theme="light"] .knowledge-modal-ux .knowledge-library-search input,
+[data-theme="light"] .knowledge-modal-ux .knowledge-editor-form input,
+[data-theme="light"] .knowledge-modal-ux .knowledge-editor-form select,
+[data-theme="light"] .knowledge-modal-ux .knowledge-editor-form textarea {
+  background: #ffffff;
+  border-color: rgba(21, 32, 51, 0.12);
+}
+
+[data-theme="light"] .knowledge-modal-ux .knowledge-wizard-steps,
+[data-theme="light"] .knowledge-modal-ux .knowledge-form-section {
+  background: #f3f7fb;
+}
+
+[data-theme="light"] .knowledge-modal-ux .knowledge-library-item {
+  background: #ffffff;
+}
+
+[data-theme="light"] .knowledge-modal-ux .knowledge-field-toggles button {
+  background: #ffffff;
+}
+
+[data-theme="light"] .knowledge-modal-ux .knowledge-field-toggles button.active {
+  color: #007891;
+  background: rgba(0, 150, 184, 0.1);
+  border-color: rgba(0, 150, 184, 0.4);
+}
+
+[data-theme="light"] .knowledge-modal-ux .btn:not(.btn-primary):not(.btn-danger) {
+  background: #ffffff;
+  border-color: rgba(0, 150, 184, 0.28);
+  color: #007891;
+}
+
+[data-theme="light"] .knowledge-modal-ux .btn-danger {
+  background: rgba(240, 96, 112, 0.08);
+  border-color: rgba(240, 96, 112, 0.22);
+}

@@ -1,0 +1,19 @@
+[Unit]
+Description=MediaCrawler FastAPI Service
+After=network.target
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/opt/MediaCrawler
+Environment=PATH=/home/deploy/.local/bin:/usr/local/bin:/usr/bin
+Environment=HOME=/home/deploy
+ExecStart=/home/deploy/.local/bin/uv run uvicorn api.main:app --host 127.0.0.1 --port 8080
+Restart=on-failure
+RestartSec=10
+# 实时爬取可能超过 5 分钟
+TimeoutStopSec=120
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,453 @@
+/* Kim-inspired account workspace, scoped to this page. */
+.account-profile-ux-shell {
+  min-width: 0;
+  color: var(--text-primary);
+}
+
+.account-profile-ux-shell .account-profile-ux-header {
+  align-items: flex-end;
+  margin-bottom: 18px;
+}
+
+.account-profile-ux-shell .account-profile-heading {
+  min-width: 0;
+}
+
+.account-profile-ux-shell .account-profile-kicker,
+.account-profile-ux-shell .account-grid-kicker {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+
+.account-profile-ux-shell .account-profile-heading h2 {
+  margin: 0;
+  font-size: clamp(25px, 3vw, 34px);
+  letter-spacing: -.025em;
+}
+
+.account-profile-ux-shell .account-profile-heading p {
+  margin: 7px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.account-profile-ux-shell .account-toolbar-right {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.account-profile-ux-shell .account-profile-search {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.account-profile-ux-shell .account-profile-search input {
+  width: min(245px, 34vw);
+  height: 36px;
+  border-color: var(--card-border);
+  background: var(--bg-input);
+}
+
+.account-profile-ux-shell .account-platform-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 17px;
+  padding-bottom: 2px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.account-profile-ux-shell .account-platform-filter {
+  min-width: max-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 7px 13px;
+  border-color: var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-muted);
+  box-shadow: var(--card-shadow);
+}
+
+.account-profile-ux-shell .account-platform-filter:hover {
+  border-color: var(--card-border-hover);
+  color: var(--text-primary);
+}
+
+.account-profile-ux-shell .account-platform-filter.active {
+  border-color: var(--border-accent-strong);
+  background: var(--color-primary-dim);
+  box-shadow: none;
+  color: var(--color-primary);
+}
+
+.account-profile-ux-shell .platform-filter-icon {
+  width: 16px;
+  font-size: 13px;
+  line-height: 1;
+  text-align: center;
+}
+
+.account-profile-ux-shell .account-hero-card {
+  position: relative;
+  grid-template-columns: minmax(280px, 1.7fr) minmax(110px, .7fr) minmax(150px, .9fr) minmax(115px, .7fr) 145px;
+  gap: clamp(16px, 2.2vw, 34px);
+  margin-bottom: 27px;
+  padding: 24px 26px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.account-profile-ux-shell .account-hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--color-primary);
+  opacity: .85;
+}
+
+.account-profile-ux-shell .account-hero-eyebrow {
+  color: var(--color-primary);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.account-profile-ux-shell .account-hero-info h3 {
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.account-profile-ux-shell .hero-platform-tags,
+.account-profile-ux-shell .account-card-tags {
+  flex-wrap: wrap;
+}
+
+.account-profile-ux-shell .platform-tag-outline {
+  align-items: center;
+  gap: 5px;
+  border-color: var(--card-border);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+}
+
+.account-profile-ux-shell .account-hero-stat {
+  position: relative;
+  min-width: 0;
+  align-self: stretch;
+  align-content: center;
+  padding-left: 17px;
+  border-left: 1px solid var(--card-divider);
+}
+
+.account-profile-ux-shell .account-hero-stat .stat-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-profile-ux-shell .account-completion-value {
+  color: var(--color-primary);
+}
+
+.account-profile-ux-shell .archive-progress {
+  max-width: 105px;
+}
+
+.account-profile-ux-shell .account-hero-actions-right {
+  min-width: 140px;
+  justify-self: end;
+}
+
+.account-profile-ux-shell .account-list-section {
+  margin-top: 4px;
+}
+
+.account-profile-ux-shell .account-grid-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.account-profile-ux-shell .account-grid-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.account-profile-ux-shell .account-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.account-profile-ux-shell .account-card {
+  position: relative;
+  min-height: 264px;
+  gap: 13px;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.account-profile-ux-shell .account-card::after {
+  content: none;
+}
+
+.account-profile-ux-shell .account-card:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.account-profile-ux-shell .account-card.is-current {
+  border-color: var(--border-accent-strong);
+  background:
+    linear-gradient(180deg, var(--color-primary-dim), transparent 42%),
+    var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.account-profile-ux-shell .account-card-title {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.account-profile-ux-shell .account-card-title h4 {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-profile-ux-shell .account-card-title > span {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.account-profile-ux-shell .account-card-desc {
+  min-height: 36px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.account-profile-ux-shell .account-card-meta {
+  padding: 11px 0;
+  border-top: 1px solid var(--card-divider);
+  border-bottom: 1px solid var(--card-divider);
+}
+
+.account-profile-ux-shell .account-card-meta-row {
+  gap: 12px;
+}
+
+.account-profile-ux-shell .account-card-meta-row span:last-child {
+  max-width: 62%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.account-profile-ux-shell .account-card-actions {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) auto auto;
+  gap: 7px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.account-profile-ux-shell .btn-switch-account,
+.account-profile-ux-shell .account-card-action {
+  min-height: 32px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--card-bg-soft);
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.account-profile-ux-shell .btn-switch-account {
+  border-color: var(--border-accent);
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.account-profile-ux-shell .account-card-action {
+  padding: 0 10px;
+}
+
+.account-profile-ux-shell .account-card-delete:hover:not(:disabled) {
+  border-color: rgba(240, 96, 112, 0.45);
+  background: rgba(240, 96, 112, 0.08);
+  color: var(--color-accent-red);
+}
+
+.account-profile-ux-shell .btn-switch-account:hover:not(:disabled),
+.account-profile-ux-shell .account-card-action:hover:not(:disabled) {
+  border-color: var(--card-border-hover);
+  color: var(--text-primary);
+}
+
+.account-profile-ux-shell .btn-switch-account:hover:not(:disabled) {
+  color: var(--color-primary);
+}
+
+.account-profile-ux-shell .btn-switch-account:disabled,
+.account-profile-ux-shell .account-card-action:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.account-profile-ux-shell .account-state-card {
+  min-height: 170px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+
+.account-profile-ux-shell .account-state-card p {
+  margin: 7px 0 0;
+  color: var(--text-secondary);
+}
+
+.account-profile-ux-shell .account-pagination {
+  margin-top: 15px;
+  padding: 10px 0 2px;
+}
+
+.account-profile-ux-shell .knowledge-bar {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 22px;
+  padding: 15px 18px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.account-profile-ux-shell .knowledge-bar-icon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-accent);
+  border-radius: 9px;
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+}
+
+.account-profile-ux-shell .knowledge-bar-copy {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.account-profile-ux-shell .knowledge-bar-title {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.account-profile-ux-shell .knowledge-bar-stats {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.account-profile-ux-shell .knowledge-bar-link {
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  .account-profile-ux-shell .account-hero-card {
+    grid-template-columns: minmax(240px, 1fr) repeat(3, minmax(105px, auto));
+  }
+
+  .account-profile-ux-shell .account-hero-actions-right {
+    grid-column: 2 / -1;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .account-profile-ux-shell .account-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .account-profile-ux-shell .account-profile-ux-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .account-profile-ux-shell .account-toolbar-right,
+  .account-profile-ux-shell .account-profile-search {
+    width: 100%;
+  }
+
+  .account-profile-ux-shell .account-profile-search input {
+    width: auto;
+    flex: 1;
+  }
+
+  .account-profile-ux-shell .account-hero-card {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .account-profile-ux-shell .account-hero-stat {
+    padding: 11px 0 0;
+    border-top: 1px solid var(--card-divider);
+    border-left: 0;
+  }
+
+  .account-profile-ux-shell .account-hero-actions-right {
+    grid-column: auto;
+    width: 100%;
+    justify-self: stretch;
+    justify-content: space-between;
+  }
+
+  .account-profile-ux-shell .account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .account-profile-ux-shell .knowledge-bar {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .account-profile-ux-shell .knowledge-bar-link {
+    width: 100%;
+    margin-left: 49px;
+    text-align: left;
+  }
+}

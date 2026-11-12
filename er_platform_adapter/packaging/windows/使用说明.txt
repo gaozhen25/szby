@@ -1,0 +1,92 @@
+=====================================================
+  多平台消息 Adapter - Windows 版使用说明
+=====================================================
+
+一、文件说明
+-----------------------------------------------------
+  adapter.exe          主程序（BOSS / 抖音 / 小红书 Adapter + 轻回桌面连接器）
+  node.exe             抖音发信签名用（与 adapter.exe 放同一目录；勿删）
+  adapter-gateway.exe  控制 Gateway（一般部署在服务器，PC 端通常不需要）
+  .env.example         配置模板，首次使用请复制为 .env 并填写
+  启动连接器.bat       一键启动脚本（等价于运行 adapter.exe serve）
+
+二、运行环境要求
+-----------------------------------------------------
+  - Windows 10 / 11，64 位（x64）。无需安装 Python。
+  - 平台扫码登录需要使用本机已安装的 Google Chrome
+    （程序使用 channel="chrome" 复用本机 Chrome，不打包浏览器）。
+  - 首次运行如被 Windows 安全中心/杀毒软件拦截（未签名程序），
+    选择"仍要运行 / 允许"即可。
+
+三、快速开始
+-----------------------------------------------------
+  1. 把 adapter.exe、node.exe、.env.example、启动连接器.bat 放在同一个目录
+     （例如 C:\adapter\）。
+  2. 复制 .env.example 为 .env，用记事本填写：
+       RABBITMQ_HOST / RABBITMQ_USER / RABBITMQ_PASSWORD   RabbitMQ 账号
+       ADAPTER_GATEWAY_URL                                 轻回控制服务地址(https，可暂时留空)
+     其余保持默认。
+  3. 双击 启动连接器.bat，浏览器会自动打开
+     http://127.0.0.1:8765/
+  4. 先在页面顶部输入激活码，登录本地账号。首次输入的激活码
+     需再次确认，程序会为它创建独立工作区。
+  5. 再点击 BOSS / 抖音 / 小红书的"登录"，扫码登录对应平台。
+     上游暂时不可用不会退出本地账号，待上游恢复后可重试同步。
+     之后消息自动双向收发，保持窗口开着即可。
+
+四、全部命令（在 exe 所在目录的 CMD 中运行）
+-----------------------------------------------------
+  adapter.exe serve                         启动桌面连接器（推荐日常使用）
+  adapter.exe run --platform boss           只运行 BOSS 平台
+  adapter.exe run --platform douyin         只运行抖音平台
+  adapter.exe run --platform rednote        只运行小红书平台
+  adapter.exe doctor --platform boss        体检：配置/SQLite/平台状态
+  adapter.exe boss login                    命令行扫码登录 BOSS
+  adapter.exe boss status --json            查看 BOSS 登录状态
+  adapter.exe boss conversations --limit 20 --json
+  adapter.exe boss messages <会话ID> --limit 30 --json
+  adapter.exe boss send <会话ID> "你好" --json
+  adapter.exe douyin login                  命令行扫码登录抖音
+  adapter.exe reset --platform boss --confirm-uid <UID>   重置平台绑定
+  adapter.exe mq-watch --platform boss --seconds 60       观察 MQ 消息
+  adapter.exe backfill --platform boss --since 2026-09-01T00:00:00+08:00 --limit 50 --dry-run
+
+  所有命令都可用 adapter.exe <子命令> --help 查看帮助。
+
+五、数据与目录
+-----------------------------------------------------
+  程序在【当前工作目录】下自动创建：
+    adapter_data\workspaces.sqlite3       本地账号注册库
+    adapter_data\workspaces\<随机ID>\   每个激活码的独立工作区
+      credentials.sqlite3                 平台登录凭证
+      boss.sqlite3 / douyin.sqlite3 / rednote.sqlite3
+      profiles\...                        Chrome 登录 Profile（含登录态，勿删）
+      douyin_media\                       抖音媒体缓存
+      logs\adapter.jsonl                  当前工作区日志
+    adapter_data\archive\                重置后的可恢复归档
+  请始终在 adapter.exe 所在目录启动，或给命令加 --dotenv 指定 .env 路径。
+
+六、常见问题
+-----------------------------------------------------
+  Q: 双击后窗口一闪而过？
+  A: 未登录本地账号时查看 adapter_data\logs\adapter.jsonl；登录后建议直接在
+     连接器页面下载当前工作区的诊断包。
+     通常是 .env 没配置好或缺少 Chrome。
+
+  Q: 发消息报 SyntaxError「缺少 ')'」或 JavaScript runtime / Node 错误？
+  A: 确认 C:\test（或 exe 同目录）里有 node.exe，与最新 adapter.exe 一起拷贝。
+     也可运行: adapter.exe doctor --platform douyin --skip-platform
+     查看 douyin_signing 是否 ok。仍失败可安装系统 Node.js 后再试。
+
+  Q: 换激活码/换平台账号？
+  A: 换激活码点页面顶部的“切换激活码”，原工作区完整保留。
+     只换某个平台账号，点该平台的“更换账号”并输入当前 UID。
+     “重置当前工作区”会归档整套数据后创建空白工作区，但保留 device_id。
+
+  Q: 需要开机自启？
+  A: 将 启动连接器.bat 放入 shell:startup 启动文件夹，或做成计划任务。
+
+=====================================================
+  构建信息：PyInstaller 单文件打包，Python 3.11.9 (Windows x64)
+  源码：本项目 packaging/windows/ 提供可复现的交叉构建脚本
+=====================================================

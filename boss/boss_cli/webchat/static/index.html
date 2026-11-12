@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>沟通 · BOSS直聘</title>
+  <link rel="stylesheet" href="/app.css?v=5" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <header class="sidebar-head">
+        <div class="brand">
+          <span class="logo">BOSS</span>
+          <strong>沟通</strong>
+        </div>
+        <div class="status" id="mqtt-status">连接中</div>
+      </header>
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="搜索姓名 / 职位" autocomplete="off" />
+      </div>
+      <div class="conv-list" id="conv-list">
+        <div class="empty">正在加载会话…</div>
+      </div>
+      <button class="load-more" id="load-more" hidden>加载更多会话</button>
+    </aside>
+    <main class="chat" id="chat">
+      <div class="chat-empty" id="chat-empty">
+        <div class="ghost-bubble"></div>
+        <p>选择一个沟通开始聊天</p>
+      </div>
+      <section class="chat-pane" id="chat-pane" hidden>
+        <header class="chat-head">
+          <button class="back" id="back-btn" type="button" aria-label="返回列表">‹</button>
+          <div class="peer-avatar" id="peer-avatar"></div>
+          <div class="peer-meta">
+            <div class="peer-name" id="peer-name"></div>
+            <div class="peer-job" id="peer-job"></div>
+          </div>
+        </header>
+        <button class="older" id="load-older" type="button" hidden>查看更早消息</button>
+        <div class="messages" id="messages"></div>
+        <form class="composer" id="composer">
+          <textarea id="input" rows="1" placeholder="发消息…" maxlength="2000"></textarea>
+          <button type="submit" id="send-btn">发送</button>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script src="/app.js?v=5"></script>
+</body>
+</html>

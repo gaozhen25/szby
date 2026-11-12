@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>轻回桌面连接器</title>
+    <link rel="stylesheet" href="/app.css?v=uid">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="轻回桌面连接器首页">
+          <span class="brand-mark" aria-hidden="true">轻</span>
+          <span>
+            <strong>轻回桌面连接器</strong>
+            <small>消息平台接入</small>
+          </span>
+        </a>
+        <div class="service-pill" id="service-pill" aria-live="polite">
+          <span class="status-dot"></span>
+          <span id="service-label">正在连接本机服务</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="kicker">轻回桌面连接器</p>
+          <h1 id="page-title">连接你的消息平台</h1>
+          <p>先使用激活码进入本机工作区，再登录需要使用的平台。不同激活码的数据彼此隔离。</p>
+        </section>
+
+        <section class="activation-panel" id="local-account-panel" aria-labelledby="local-account-title">
+          <div class="activation-copy">
+            <span class="step-number" aria-hidden="true">01</span>
+            <div>
+              <p class="kicker">本地账号</p>
+              <h2 id="local-account-title">使用激活码登录</h2>
+              <p id="local-account-description">每个激活码拥有独立的平台账号、浏览器 Profile 和消息状态。</p>
+            </div>
+          </div>
+          <form id="local-account-form" novalidate>
+            <label for="activation-code">激活码</label>
+            <div class="activation-controls">
+              <input
+                id="activation-code"
+                name="activation_code"
+                type="text"
+                minlength="4"
+                maxlength="256"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="请输入激活码"
+              >
+              <button class="button dark" id="local-account-login" type="submit">登录</button>
+              <button class="button quiet light" id="local-account-logout" type="button" hidden>切换激活码</button>
+            </div>
+            <div class="local-account-actions" id="local-account-actions" hidden>
+              <button class="button quiet light" id="upstream-sync" type="button">重试同步</button>
+              <button class="button danger" id="local-account-reset" type="button">重置当前工作区</button>
+            </div>
+            <p class="form-note" id="local-account-note" aria-live="polite">请输入激活码进入本机工作区。</p>
+          </form>
+        </section>
+
+        <div class="section-heading">
+          <span class="step-number" aria-hidden="true">02</span>
+          <div>
+            <p class="kicker">消息平台</p>
+            <h2>登录需要接入的平台</h2>
+          </div>
+        </div>
+
+        <section class="platform-grid" aria-label="平台连接状态">
+          <article class="platform-card" data-platform="boss">
+            <div class="platform-heading">
+              <img class="platform-logo" src="/logos/boss.png" alt="">
+              <div>
+                <h2>BOSS 直聘</h2>
+                <p>招聘沟通</p>
+              </div>
+              <span class="platform-state is-loading" data-role="state">
+                <span class="status-dot"></span>
+                <span data-role="state-label">读取中</span>
+              </span>
+            </div>
+            <dl class="account-meta">
+              <div class="uid-field">
+                <dt>平台 UID</dt>
+                <dd class="uid-line"><span data-role="uid">—</span></dd>
+              </div>
+              <div>
+                <dt>消息服务</dt>
+                <dd data-role="worker">正在检查</dd>
+              </div>
+            </dl>
+            <p class="platform-message" data-role="message" aria-live="polite">正在读取本机状态…</p>
+            <div class="card-actions">
+              <button class="button primary" type="button" data-action="login" disabled>扫码登录</button>
+              <button class="button quiet" type="button" data-action="logout" hidden>退出登录</button>
+              <button class="button quiet" type="button" data-action="reset" hidden>更换账号</button>
+            </div>
+          </article>
+
+          <article class="platform-card" data-platform="douyin">
+            <div class="platform-heading">
+              <img class="platform-logo" src="/logos/douyin.png?v=3" alt="">
+              <div>
+                <h2>抖音</h2>
+                <p>私信沟通</p>
+              </div>
+              <span class="platform-state is-loading" data-role="state">
+                <span class="status-dot"></span>
+                <span data-role="state-label">读取中</span>
+              </span>
+            </div>
+            <dl class="account-meta">
+              <div class="uid-field">
+                <dt>平台 UID</dt>
+                <dd class="uid-line"><span data-role="uid">—</span></dd>
+              </div>
+              <div>
+                <dt>消息服务</dt>
+                <dd data-role="worker">正在检查</dd>
+              </div>
+            </dl>
+            <p class="platform-message" data-role="message" aria-live="polite">正在读取本机状态…</p>
+            <div class="card-actions">
+              <button class="button primary" type="button" data-action="login" disabled>扫码登录</button>
+              <button class="button quiet" type="button" data-action="logout" hidden>退出登录</button>
+              <button class="button quiet" type="button" data-action="reset" hidden>更换账号</button>
+            </div>
+          </article>
+
+
+          <article class="platform-card" data-platform="rednote">
+            <div class="platform-heading">
+              <img class="platform-logo" src="/logos/rednote.png" alt="">
+              <div>
+                <h2>小红书</h2>
+                <p>私信沟通</p>
+              </div>
+              <span class="platform-state is-loading" data-role="state">
+                <span class="status-dot"></span>
+                <span data-role="state-label">读取中</span>
+              </span>
+            </div>
+            <dl class="account-meta">
+              <div class="uid-field">
+                <dt>平台 UID</dt>
+                <dd class="uid-line"><span data-role="uid">—</span></dd>
+              </div>
+              <div>
+                <dt>消息服务</dt>
+                <dd data-role="worker">正在检查</dd>
+              </div>
+            </dl>
+            <p class="platform-message" data-role="message" aria-live="polite">正在读取本机状态…</p>
+            <div class="card-actions">
+              <button class="button primary" type="button" data-action="login" disabled>扫码登录</button>
+              <button class="button quiet" type="button" data-action="logout" hidden>退出登录</button>
+              <button class="button quiet" type="button" data-action="reset" hidden>更换账号</button>
+            </div>
+          </article>
+
+          <article class="platform-card" data-platform="wechat" data-login-mode="host">
+            <div class="platform-heading">
+              <img class="platform-logo" src="/logos/wechat.svg" alt="">
+              <div>
+                <h2>微信</h2>
+                <p>私聊沟通</p>
+              </div>
+              <span class="platform-state is-loading" data-role="state">
+                <span class="status-dot"></span>
+                <span data-role="state-label">读取中</span>
+              </span>
+            </div>
+            <dl class="account-meta">
+              <div class="uid-field">
+                <dt>平台 UID</dt>
+                <dd class="uid-line"><span data-role="uid">—</span></dd>
+              </div>
+              <div>
+                <dt>消息服务</dt>
+                <dd data-role="worker">正在检查</dd>
+              </div>
+            </dl>
+            <p class="platform-message" data-role="message" aria-live="polite">正在读取本机状态…</p>
+            <div class="card-actions">
+              <button class="button primary" type="button" data-action="login" disabled>登录</button>
+              <button class="button quiet" type="button" data-action="docs">接入文档</button>
+            </div>
+          </article>
+
+          <article class="platform-card" data-platform="wecom" data-login-mode="host">
+            <div class="platform-heading">
+              <img class="platform-logo" src="/logos/wecom.png" alt="">
+              <div>
+                <h2>企业微信</h2>
+                <p>客户沟通</p>
+              </div>
+              <span class="platform-state is-loading" data-role="state">
+                <span class="status-dot"></span>
+                <span data-role="state-label">读取中</span>
+              </span>
+            </div>
+            <dl class="account-meta">
+              <div class="uid-field">
+                <dt>平台 UID</dt>
+                <dd class="uid-line"><span data-role="uid">—</span></dd>
+              </div>
+              <div>
+                <dt>消息服务</dt>
+                <dd data-role="worker">正在检查</dd>
+              </div>
+            </dl>
+            <p class="platform-message" data-role="message" aria-live="polite">正在读取本机状态…</p>
+            <div class="card-actions">
+              <button class="button primary" type="button" data-action="login" disabled>登录</button>
+              <button class="button quiet" type="button" data-action="docs">接入文档</button>
+            </div>
+          </article>
+        </section>
+
+      </main>
+
+      <footer>
+        <span><span class="local-lock" aria-hidden="true">●</span> 仅限本机访问</span>
+        <button class="diagnostics-link" id="diagnostics-download" type="button">下载诊断包</button>
+        <span>平台账号凭证不会显示在页面中</span>
+      </footer>
+    </div>
+
+    <div class="switch-dialog" id="switch-dialog" hidden>
+      <div class="switch-dialog-card" role="dialog" aria-modal="true" aria-labelledby="switch-dialog-title">
+        <h2 id="switch-dialog-title">更换账号</h2>
+        <p id="switch-dialog-text"></p>
+        <p class="switch-dialog-uid" id="switch-dialog-uid"></p>
+        <div class="switch-dialog-actions">
+          <button class="button quiet" id="switch-dialog-copy" type="button">复制 UID</button>
+        </div>
+        <label for="switch-dialog-input">输入当前 UID 以确认</label>
+        <input id="switch-dialog-input" autocomplete="off" spellcheck="false">
+        <div class="switch-dialog-actions">
+          <button class="button quiet" id="switch-dialog-cancel" type="button">取消</button>
+          <button class="button primary" id="switch-dialog-confirm" type="button">确认更换</button>
+        </div>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <noscript>此页面需要启用 JavaScript 才能读取平台状态。</noscript>
+  </body>
+</html>

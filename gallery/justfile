@@ -1,0 +1,13 @@
+# Local and deploy commands, in the same shape as fast-soy-admin.
+
+run:
+    bash run.sh
+
+up:
+    docker compose up -d --build
+
+down:
+    docker compose down
+
+logs:
+    docker compose logs -f app nginx

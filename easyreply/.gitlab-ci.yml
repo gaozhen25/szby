@@ -1,0 +1,50 @@
+include:
+  - project: devops/ci-templates
+    ref: v1.6.0
+    file:
+      - /common.yml
+      - /rules.yml
+      - /targets.yml
+      - /profiles.yml
+      - /docker-build.yml
+      - /compose-deploy.yml
+      - /compose-rollback.yml
+
+variables:
+  IMAGE_NAME: harbor.bytech.tech/qinghui/qinghui-web
+  DEPLOY_PATH: /home/ubuntu/projects/qinghui-web
+  COMPOSE_FILE: docker-compose.yml
+
+deploy-test:
+  extends: 
+    - .deploy-test-auto
+    - .target-test-dev1
+
+  variables:
+    INSTANCE_NAME: qh
+    BUILD_ENV: test
+
+
+deploy-prod:
+  extends: 
+    - .deploy-production-manual
+    - .target-prod-zyfw
+
+  needs:
+    - job: docker-build
+      artifacts: true
+    - job: deploy-test
+      artifacts: false
+
+  variables:
+    INSTANCE_NAME: qh
+    BUILD_ENV: prod
+
+rollback-qh:
+  extends: 
+    - .rollback-production-manual
+    - .target-prod-zyfw
+
+  variables:
+    INSTANCE_NAME: qh
+    BUILD_ENV: prod

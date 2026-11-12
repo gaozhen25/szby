@@ -1,0 +1,10 @@
+{
+  "message_type": 1,
+  "direction": "对方",
+  "name": "候选人甲",
+  "uid": 2002,
+  "to_uid": 1001,
+  "mid": 9001,
+  "text": "您好，我对职位感兴趣",
+  "timestamp_ms": 1788926500123
+}

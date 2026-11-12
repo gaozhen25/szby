@@ -1,0 +1,21 @@
+# runtime
+data/
+__pycache__/
+**/__pycache__/
+*.pyc
+.idea/
+.venv/
+venv/
+node_modules/
+vendor/DouYin_Spider/
+
+# cookies / secrets
+/cookies/
+.env
+
+# misc
+*.xlsx
+.DS_Store
+cookies/xhs_login_qrcode.png
+static/upload/
+static/cards/

@@ -1,0 +1,202 @@
+/* ═══════════════════════════════════════════════════════════════
+   繁星AI Design System - CSS Variables
+   Reference: dagou.cn.com style (cyan/sci-fi theme)
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Primary Colors (Cyan/Blue) ── */
+  /* Softened neon for long-session Operate UI; keep cyan identity */
+  --color-primary: #4ecfe6;
+  --color-primary-rgb: 78, 207, 230;
+  --color-primary-dim: rgba(78, 207, 230, 0.14);
+  --color-primary-glow: rgba(78, 207, 230, 0.28);
+  --color-primary-strong: rgba(120, 220, 236, 0.92);
+  
+  /* ── Accent Colors ── */
+  /* Brightened for dark-surface labels / chips */
+  --color-accent-purple: #c4b6ff;
+  --color-accent-pink: #f0b4d0;
+  --color-accent-gold: #f2d28a;
+  --color-accent-green: #6adb9a;
+  --color-accent-red: #ff9aa6;
+
+  /* Status text on soft tinted chips (never raw mid-accent alone) */
+  --status-danger-fg: #ffd0d6;
+  --status-warning-fg: #ffe4b0;
+  --status-success-fg: #b6f0d0;
+  --status-info-fg: #b8ecf6;
+  
+  /* ── Background Colors ── */
+  /* Lifted near-black to reduce glare against bright text */
+  --bg-deep: #0b101c;
+  --bg-space: #0e1422;
+  --bg-card: rgba(14, 22, 38, 0.88);
+  --bg-card-hover: rgba(18, 28, 46, 0.92);
+  --bg-glass: rgba(14, 22, 38, 0.78);
+  --bg-glass-nav: #0c101c;
+  --bg-overlay: rgba(8, 12, 22, 0.92);
+  --bg-input: rgba(255, 255, 255, 0.055);
+  --bg-input-focus: rgba(255, 255, 255, 0.08);
+  
+  /* ── Text Colors ── */
+  /* Operate dark ramp: body/meta must stay comfortably scannable */
+  --text-primary: #f7f8fc;
+  --text-secondary: #e2e6f2;
+  --text-muted: #c8cfe0;
+  --text-faint: #b0b8cc;
+  
+  /* ── Border Colors ── */
+  --border-subtle: rgba(200, 214, 240, 0.1);
+  --border-medium: rgba(200, 214, 240, 0.16);
+  --border-accent: rgba(78, 207, 230, 0.32);
+  --border-accent-strong: rgba(78, 207, 230, 0.5);
+  
+  /* ── Spacing Scale ── */
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --space-4xl: 40px;
+  
+  /* ── Border Radius ── */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 22px;
+  --radius-full: 999px;
+  
+  /* ── Shadows ── */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.36);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.44);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.52);
+  --shadow-glow: 0 0 18px rgba(78, 207, 230, 0.12);
+  --shadow-glow-strong: 0 0 26px rgba(78, 207, 230, 0.2);
+  
+  /* ── Typography ── */
+  --font-display: 'Orbitron', 'Rajdhani', sans-serif;
+  --font-data: 'Rajdhani', 'SF Mono', monospace;
+  --font-body: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  
+  /* ── Font Sizes ── */
+  /* Operate floor: avoid sub-12px UI copy; body at 14px */
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 22px;
+  --text-3xl: 28px;
+  --text-4xl: 36px;
+  
+  /* ── Font Weights ── */
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  
+  /* ── Line Heights ── */
+  /* Slightly more leading for light-on-dark Chinese UI */
+  --leading-tight: 1.25;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+  
+  /* ── Transitions ── */
+  --ease-out: cubic-bezier(0.16, 1, 0.22, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.12s var(--ease-out);
+  --transition-normal: 0.2s var(--ease-out);
+  --transition-slow: 0.35s var(--ease-out);
+  
+  /* ── Z-Index Scale ── */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal-backdrop: 500;
+  --z-modal: 600;
+  --z-toast: 900;
+  --z-splash: 1000;
+  
+  /* ── Layout ── */
+  --sidebar-width: 200px;
+  --sidebar-width-collapsed: 68px;
+  --topbar-height: 64px;
+  --content-max-width: 1400px;
+
+  --nav-active-bg: #123248;
+  --surface-elevated: rgba(16, 24, 40, 0.96);
+
+  --card-bg: #121a2c;
+  --card-bg-soft: #161f34;
+  --card-border: rgba(160, 180, 214, 0.16);
+  --card-border-hover: rgba(78, 207, 230, 0.36);
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.04), 0 10px 28px rgba(0, 0, 0, 0.2);
+  --card-shadow-hover: 0 1px 0 rgba(255, 255, 255, 0.05), 0 14px 34px rgba(0, 0, 0, 0.26);
+  --card-radius: 16px;
+  --card-divider: rgba(160, 180, 214, 0.14);
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --color-primary: #0096b8;
+  --color-primary-rgb: 0, 150, 184;
+  --color-primary-dim: rgba(0, 150, 184, 0.12);
+  --color-primary-glow: rgba(0, 150, 184, 0.28);
+  --color-primary-strong: rgba(0, 130, 160, 0.9);
+
+  --bg-deep: #f3f6fb;
+  --bg-space: #e8eef7;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card-hover: rgba(255, 255, 255, 0.98);
+  --bg-glass: rgba(255, 255, 255, 0.86);
+  --bg-glass-nav: #f7f9fc;
+  --bg-overlay: rgba(232, 238, 247, 0.82);
+  --bg-input: rgba(15, 30, 55, 0.04);
+  --bg-input-focus: rgba(15, 30, 55, 0.06);
+
+  --text-primary: #152033;
+  --text-secondary: #3b4a63;
+  --text-muted: #5a6b84;
+  --text-faint: #7a879c;
+
+  --status-danger-fg: #b42338;
+  --status-warning-fg: #9a6700;
+  --status-success-fg: #0f7a45;
+  --status-info-fg: #0b6e84;
+
+  --border-subtle: rgba(21, 32, 51, 0.08);
+  --border-medium: rgba(21, 32, 51, 0.14);
+  --border-accent: rgba(0, 150, 184, 0.28);
+  --border-accent-strong: rgba(0, 150, 184, 0.45);
+
+  --shadow-sm: 0 2px 8px rgba(21, 32, 51, 0.08);
+  --shadow-md: 0 4px 16px rgba(21, 32, 51, 0.1);
+  --shadow-lg: 0 8px 32px rgba(21, 32, 51, 0.12);
+  --shadow-xl: 0 16px 48px rgba(21, 32, 51, 0.14);
+  --shadow-glow: 0 0 20px rgba(0, 150, 184, 0.12);
+  --shadow-glow-strong: 0 0 30px rgba(0, 150, 184, 0.18);
+
+  --nav-active-bg: rgba(0, 150, 184, 0.12);
+  --surface-elevated: #ffffff;
+
+  --card-bg: #ffffff;
+  --card-bg-soft: #f7fafc;
+  --card-border: rgba(21, 32, 51, 0.1);
+  --card-border-hover: rgba(0, 150, 184, 0.38);
+  --card-shadow: 0 1px 2px rgba(21, 32, 51, 0.04), 0 8px 24px rgba(21, 32, 51, 0.06);
+  --card-shadow-hover: 0 1px 2px rgba(21, 32, 51, 0.05), 0 12px 28px rgba(21, 32, 51, 0.09);
+  --card-radius: 16px;
+  --card-divider: rgba(21, 32, 51, 0.08);
+
+  color-scheme: light;
+}

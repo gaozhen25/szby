@@ -1,0 +1,39 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: deploy/web.Dockerfile
+    ports:
+      - "1880:80"
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: always
+    networks:
+      - internal
+
+  app:
+    build:
+      context: .
+      dockerfile: deploy/app.Dockerfile
+    env_file:
+      - .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: "9999"
+      GALLERY_DATA: /opt/gallery/data
+    volumes:
+      - ./data:/opt/gallery/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9999/healthz')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    restart: always
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge

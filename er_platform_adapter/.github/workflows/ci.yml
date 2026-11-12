@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main, gz]
+  pull_request:
+    branches: [main, gz]
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y libsecret-1-dev
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
+        run: uv sync --extra dev
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Test
+        run: uv run pytest -q
+
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install test dependencies
+        run: uv sync --extra dev --extra browser
+
+      - name: Test on native Windows
+        run: uv run pytest -q
+
+      - name: Build and smoke-test adapter.exe
+        shell: pwsh
+        run: packaging/windows/build-native.ps1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: adapter-windows-x64
+          path: build_win/dist/*
+          if-no-files-found: error

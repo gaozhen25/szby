@@ -1,0 +1,136 @@
+syntax = "proto3";
+
+package openim.cs;
+
+message Actor {
+  reserved 5, 6;
+  string actor_id = 1 [json_name = "actorID"];
+  string shop_name = 2 [json_name = "shopName"];
+  bool cs_enabled = 3 [json_name = "csEnabled"];
+  string business_domain = 4 [json_name = "BusinessDomain"];
+  string agent_key = 7 [json_name = "agentKey"];
+  int64 create_time = 8 [json_name = "createTime"];
+  int64 update_time = 9 [json_name = "updateTime"];
+}
+
+message ActorPlatformAccount {
+  reserved 3;
+  string actor_id = 1 [json_name = "actorID"];
+  string platform = 2;
+  string openim_id = 4 [json_name = "openIMID"];
+  string nickname = 5;
+  string avatar_url = 6 [json_name = "avatarURL"];
+  string profile = 7;
+  string status = 8;
+  string activation_code = 9 [json_name = "activationCode"];
+  int64 create_time = 10 [json_name = "createTime"];
+  int64 update_time = 11 [json_name = "updateTime"];
+}
+
+message AudienceAccount {
+  string audience_platform_id = 1 [json_name = "audiencePlatformID"];
+  string platform = 2;
+  string openim_id = 3 [json_name = "openIMID"];
+  string nickname = 4;
+  string avatar_url = 5 [json_name = "avatarURL"];
+  string profile = 6;
+  string status = 7;
+  int64 create_time = 8 [json_name = "createTime"];
+  int64 update_time = 9 [json_name = "updateTime"];
+}
+
+message CSSession {
+  string session_id = 1 [json_name = "sessionID"];
+  string im_conversation_id = 2 [json_name = "imConversationID"];
+  string audience_platform_id = 3 [json_name = "audiencePlatformID"];
+  string actor_platform_id = 4 [json_name = "actorPlatformID"];
+  string assigned_agent_id = 5 [json_name = "assignedAgentID"];
+  int32 status = 6;
+  int32 unread_for_agent = 7 [json_name = "unreadForAgent"];
+  int64 last_audience_msg_at = 8 [json_name = "lastAudienceMsgAt"];
+  int64 last_agent_msg_at = 9 [json_name = "lastAgentMsgAt"];
+  int64 create_time = 10 [json_name = "createTime"];
+  int64 update_time = 11 [json_name = "updateTime"];
+  string audience_nickname = 20 [json_name = "audienceNickname"];
+  string audience_face_url = 21 [json_name = "audienceFaceURL"];
+  string actor_nickname = 22 [json_name = "actorNickname"];
+  string last_message_preview = 23 [json_name = "lastMessagePreview"];
+  string platform = 24;
+}
+
+message ActorAccountResp { Actor actor = 1; ActorPlatformAccount account = 2; }
+message AudienceAccountResp { AudienceAccount account = 1; }
+message AudienceAddAccountResp { CSSession session = 1; bool is_new_session = 2 [json_name = "isNewSession"]; }
+message ActorGetAccountReq { string platform = 1; string actor_platform_id = 2 [json_name = "actorPlatformID"]; }
+message AudienceGetAccountReq {
+  string platform = 1;
+  string audience_platform_id = 2 [json_name = "audiencePlatformID"];
+  string actor_platform_id = 3 [json_name = "actorPlatformID"];
+}
+
+message ActorAddAccountReq {
+  reserved 5, 7;
+  string actor_id = 1 [json_name = "actorID"];
+  string shop_name = 2 [json_name = "shopName"];
+  string business_domain = 3 [json_name = "BusinessDomain"];
+  string activation_code = 4 [json_name = "activationCode"];
+  string platform = 6;
+  string openim_id = 8 [json_name = "openIMID"];
+  string nickname = 9;
+  string avatar_url = 10 [json_name = "avatarURL"];
+  string profile = 11;
+  string status = 12;
+}
+
+message ActorUpdateAccountReq { string actor_id = 1 [json_name = "actorId"]; string nickname = 2; string avatar_url = 3 [json_name = "avatarURL"]; }
+
+message AudienceAddAccountReq {
+  string actor_platform_id = 1 [json_name = "actorPlatformID"];
+  string audience_platform_id = 2 [json_name = "audiencePlatformID"];
+  reserved 3, 4, 5;
+  string platform = 6;
+  reserved 7, 8;
+  string nickname = 9;
+  string avatar_url = 10 [json_name = "avatarURL"];
+  string profile = 11;
+  string status = 12;
+}
+
+message AudienceUpdateAccountReq { string audience_id = 1 [json_name = "audienceId"]; string nickname = 2; string avatar_url = 3 [json_name = "avatarURL"]; }
+message GetLatestActualSendTimeReq { string platform = 1; string actorPlatformID = 2; }
+message GetLatestActualSendTimeResp { bool found = 1; int64 actualSendTime = 2; string serverMsgID = 3; string clientMsgID = 4; }
+
+message UpdateAudiencePlatformAccountReq {
+  string platform = 1;
+  string audiencePlatformID = 2;
+  optional string nickname = 3;
+  optional string avatarURL = 4;
+  optional string profile = 5;
+  optional string status = 6;
+}
+
+message AudiencePlatformAccount {
+  string audiencePlatformID = 1;
+  string platform = 2;
+  string openIMID = 3;
+  string nickname = 4;
+  string avatarURL = 5;
+  string profile = 6;
+  string status = 7;
+  int64 createTime = 8;
+  int64 updateTime = 9;
+  string remark = 10;
+}
+
+message UpdateAudiencePlatformAccountResp { AudiencePlatformAccount account = 1; }
+
+service cs {
+  rpc ActorGetAccount(ActorGetAccountReq) returns (ActorAccountResp);
+  rpc ActorAddAccount(ActorAddAccountReq) returns (ActorAccountResp);
+  rpc ActorUpdateAccount(ActorUpdateAccountReq) returns (ActorAccountResp);
+  rpc AudienceGetAccount(AudienceGetAccountReq) returns (AudienceAccountResp);
+  rpc AudienceAddAccount(AudienceAddAccountReq) returns (AudienceAddAccountResp);
+  rpc AudienceUpdateAccount(AudienceUpdateAccountReq) returns (AudienceAccountResp);
+  rpc UpdateAudiencePlatformAccount(UpdateAudiencePlatformAccountReq) returns (UpdateAudiencePlatformAccountResp);
+  rpc GetLatestActualSendTime(GetLatestActualSendTimeReq) returns (GetLatestActualSendTimeResp);
+}

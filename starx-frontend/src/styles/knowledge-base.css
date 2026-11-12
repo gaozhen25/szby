@@ -1,0 +1,702 @@
+/* Kim-inspired knowledge workspace, isolated to its modal. */
+.knowledge-modal-ux .knowledge-library-modal,
+.knowledge-modal-ux .knowledge-editor-modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: min(86vh, 820px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.knowledge-modal-ux .knowledge-library-modal {
+  width: min(800px, 94vw);
+}
+
+.knowledge-modal-ux .knowledge-editor-modal {
+  width: min(940px, 94vw);
+  height: min(86vh, 820px);
+}
+
+.knowledge-modal-ux .knowledge-modal-titlebar {
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  right: 14px;
+}
+
+.knowledge-modal-ux .knowledge-modal-close {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--card-bg-soft);
+  color: var(--text-muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.knowledge-modal-ux .knowledge-modal-close:hover:not(:disabled) {
+  border-color: var(--border-accent-strong);
+  color: var(--text-primary);
+}
+
+.knowledge-modal-ux .knowledge-modal-close:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.knowledge-modal-ux .knowledge-library-shell,
+.knowledge-modal-ux .knowledge-editor-shell {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.knowledge-modal-ux .knowledge-library-shell {
+  max-height: min(86vh, 820px);
+  padding: 25px;
+}
+
+.knowledge-modal-ux .knowledge-library-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 54px;
+  margin: 0 40px 20px 0;
+}
+
+.knowledge-modal-ux .knowledge-library-kicker {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--color-primary);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+
+.knowledge-modal-ux .knowledge-library-header h3,
+.knowledge-modal-ux .knowledge-editor-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 23px;
+  letter-spacing: -.02em;
+}
+
+.knowledge-modal-ux .knowledge-library-header p,
+.knowledge-modal-ux .knowledge-editor-header p {
+  margin: 7px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.knowledge-modal-ux .knowledge-library-search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: var(--card-bg-soft);
+}
+
+.knowledge-modal-ux .knowledge-library-search input {
+  min-width: 0;
+  flex: 1;
+  height: 36px;
+  border-color: var(--border-subtle);
+  background: var(--bg-input);
+}
+
+.knowledge-modal-ux .knowledge-library-list {
+  min-height: 150px;
+  display: grid;
+  gap: 9px;
+  padding-right: 3px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.knowledge-modal-ux .knowledge-library-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: var(--card-bg-soft);
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.knowledge-modal-ux .knowledge-library-item:hover {
+  border-color: var(--card-border-hover);
+  transform: translateY(-1px);
+}
+
+.knowledge-modal-ux .knowledge-library-mark {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-accent);
+  border-radius: 9px;
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+  font-size: 16px;
+}
+
+.knowledge-modal-ux .knowledge-library-info {
+  min-width: 0;
+  display: grid;
+  flex: 1;
+  gap: 3px;
+}
+
+.knowledge-modal-ux .knowledge-library-info strong,
+.knowledge-modal-ux .knowledge-library-info span,
+.knowledge-modal-ux .knowledge-library-info small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.knowledge-modal-ux .knowledge-library-info strong {
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.knowledge-modal-ux .knowledge-library-info span {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-library-info small {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-library-actions {
+  display: flex;
+  gap: 7px;
+  margin-left: auto;
+}
+
+.knowledge-modal-ux .knowledge-library-state {
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  padding: 24px;
+  border: 1px dashed var(--border-medium);
+  border-radius: 11px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.knowledge-modal-ux .knowledge-library-state p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-library-empty-icon {
+  color: var(--color-primary);
+  font-size: 25px;
+}
+
+.knowledge-modal-ux .knowledge-library-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(var(--color-primary-rgb), .18);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: knowledgeSpin .7s linear infinite;
+}
+
+.knowledge-modal-ux .knowledge-library-pagination {
+  flex: 0 0 auto;
+  margin-top: 17px;
+  padding-top: 15px;
+  border-top: 1px solid var(--card-divider);
+}
+
+.knowledge-modal-ux .knowledge-editor-shell {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  height: 100%;
+  overflow: hidden;
+}
+
+.knowledge-modal-ux .knowledge-editor-header {
+  flex: 0 0 auto;
+  padding: 24px 62px 17px 25px;
+  border-bottom: 1px solid var(--card-divider);
+}
+
+.knowledge-modal-ux .knowledge-wizard-steps {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  padding: 13px 25px;
+  border-bottom: 1px solid var(--card-divider);
+  background: var(--card-bg-soft);
+}
+
+.knowledge-modal-ux .knowledge-wizard-step {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 11px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-wizard-step > span {
+  width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-wizard-step.active,
+.knowledge-modal-ux .knowledge-wizard-step.completed {
+  border-color: var(--border-accent);
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+}
+
+.knowledge-modal-ux .knowledge-editor-fieldset {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-inline-size: 0;
+  min-height: 0;
+  min-block-size: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.knowledge-modal-ux .knowledge-editor-scroll {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+
+.knowledge-modal-ux .knowledge-editor-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 21px;
+  align-content: start;
+  padding: 21px 25px 28px;
+}
+
+.knowledge-modal-ux .knowledge-editor-form {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 17px;
+}
+
+.knowledge-modal-ux .knowledge-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.knowledge-modal-ux .knowledge-editor-form label {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-editor-form label > span {
+  font-weight: 650;
+}
+
+.knowledge-modal-ux .knowledge-editor-form label b {
+  color: #ff6876;
+}
+
+.knowledge-modal-ux .knowledge-editor-form input,
+.knowledge-modal-ux .knowledge-editor-form select,
+.knowledge-modal-ux .knowledge-editor-form textarea {
+  width: 100%;
+  border-color: var(--border-subtle);
+  background: var(--bg-input);
+}
+
+.knowledge-modal-ux .knowledge-editor-form textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.knowledge-modal-ux .knowledge-editor-form label small {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-editor-aside {
+  align-self: start;
+  padding: 16px;
+  border: 1px solid var(--border-accent);
+  border-radius: 11px;
+  background: var(--color-primary-dim);
+}
+
+.knowledge-modal-ux .knowledge-editor-aside > strong {
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.knowledge-modal-ux .knowledge-editor-aside ul {
+  display: grid;
+  gap: 13px;
+  margin: 15px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.knowledge-modal-ux .knowledge-editor-aside li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.knowledge-modal-ux .knowledge-editor-aside li > span {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-accent);
+  border-radius: 7px;
+  color: var(--color-primary);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-editor-aside li b,
+.knowledge-modal-ux .knowledge-editor-aside li small {
+  display: block;
+}
+
+.knowledge-modal-ux .knowledge-editor-aside li b {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-editor-aside li small {
+  margin-top: 3px;
+  color: var(--text-secondary);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.knowledge-modal-ux .knowledge-form-section {
+  display: grid;
+  gap: 11px;
+  padding: 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: var(--card-bg-soft);
+}
+
+.knowledge-modal-ux .knowledge-form-section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.knowledge-modal-ux .knowledge-form-section-heading h4,
+.knowledge-modal-ux .knowledge-form-section-heading p {
+  margin: 0;
+}
+
+.knowledge-modal-ux .knowledge-form-section-heading h4 {
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.knowledge-modal-ux .knowledge-form-section-heading p {
+  margin-top: 4px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-material-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.knowledge-modal-ux .knowledge-material-upload {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.knowledge-modal-ux .knowledge-material-upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.knowledge-modal-ux .knowledge-material-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--bg-input);
+}
+
+.knowledge-modal-ux .knowledge-material-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.knowledge-modal-ux .knowledge-material-preview {
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.knowledge-modal-ux .knowledge-material-preview:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.knowledge-modal-ux .knowledge-material-remove {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgb(255 255 255 / 35%);
+  border-radius: 50%;
+  background: rgb(0 0 0 / 68%);
+  color: #fff;
+  cursor: pointer;
+}
+
+.knowledge-modal-ux .knowledge-material-empty {
+  padding: 18px;
+  border: 1px dashed var(--card-border);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-align: center;
+}
+
+.knowledge-modal-ux .knowledge-field-toggles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.knowledge-modal-ux .knowledge-field-toggles button {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--bg-input);
+  color: var(--text-muted);
+  text-align: left;
+  cursor: pointer;
+}
+
+.knowledge-modal-ux .knowledge-field-toggles button.active {
+  border-color: var(--border-accent-strong);
+  background: var(--color-primary-dim);
+  color: var(--text-primary);
+}
+
+.knowledge-modal-ux .knowledge-field-toggles span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-field-toggles small {
+  color: var(--text-secondary);
+  font-size: 9px;
+}
+
+.knowledge-modal-ux .knowledge-field-toggles button.active small {
+  color: var(--color-primary);
+}
+
+.knowledge-modal-ux .knowledge-editor-summary dl {
+  display: grid;
+  gap: 9px;
+  margin: 14px 0;
+}
+
+.knowledge-modal-ux .knowledge-editor-summary dl > div {
+  display: grid;
+  gap: 3px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--card-divider);
+}
+
+.knowledge-modal-ux .knowledge-editor-summary dt {
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.knowledge-modal-ux .knowledge-editor-summary dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.knowledge-modal-ux .knowledge-editor-summary p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.knowledge-modal-ux .knowledge-editor-footer {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 14px 25px;
+  border-top: 1px solid var(--card-divider);
+  background: var(--card-bg);
+}
+
+.knowledge-modal-ux .knowledge-editor-footer > span {
+  position: relative;
+  z-index: 1;
+  color: var(--text-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@keyframes knowledgeSpin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knowledge-modal-ux .knowledge-library-spinner {
+    animation: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .knowledge-modal-ux .knowledge-library-shell {
+    padding: 20px 16px;
+  }
+
+  .knowledge-modal-ux .knowledge-library-header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 13px;
+    margin-right: 40px;
+  }
+
+  .knowledge-modal-ux .knowledge-library-header .btn-primary {
+    align-self: flex-start;
+  }
+
+  .knowledge-modal-ux .knowledge-library-item {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .knowledge-modal-ux .knowledge-library-info {
+    width: calc(100% - 52px);
+  }
+
+  .knowledge-modal-ux .knowledge-library-actions {
+    width: 100%;
+    margin-left: 51px;
+  }
+
+  .knowledge-modal-ux .knowledge-library-actions .btn {
+    flex: 1;
+  }
+
+  .knowledge-modal-ux .knowledge-library-pagination,
+  .knowledge-modal-ux .knowledge-editor-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .knowledge-modal-ux .knowledge-library-pagination .button-row,
+  .knowledge-modal-ux .knowledge-editor-footer .button-row {
+    justify-content: flex-end;
+  }
+
+  .knowledge-modal-ux .knowledge-editor-header {
+    padding-left: 17px;
+  }
+
+  .knowledge-modal-ux .knowledge-wizard-steps,
+  .knowledge-modal-ux .knowledge-editor-body {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .knowledge-modal-ux .knowledge-editor-body,
+  .knowledge-modal-ux .knowledge-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-modal-ux .knowledge-editor-aside {
+    order: -1;
+  }
+
+  .knowledge-modal-ux .knowledge-field-toggles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .knowledge-modal-ux .knowledge-material-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

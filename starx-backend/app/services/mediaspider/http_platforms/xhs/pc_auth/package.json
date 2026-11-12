@@ -1,0 +1,7 @@
+{
+  "name": "starx-xhs-pc-auth",
+  "private": true,
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  }
+}

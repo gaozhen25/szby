@@ -1,0 +1,22 @@
+/* Soft tinted surfaces: use high-legibility status foreground tokens */
+
+.workflow-publish-notice.warning {
+  color: var(--status-warning-fg);
+}
+
+.workflow-publish-notice.success {
+  color: var(--status-success-fg);
+}
+
+.toast.success {
+  color: var(--status-success-fg);
+}
+
+.toast.warning {
+  color: var(--status-warning-fg);
+}
+
+.toast.danger,
+.toast.error {
+  color: var(--status-danger-fg);
+}

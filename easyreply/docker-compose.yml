@@ -1,0 +1,6 @@
+services:
+  qinghui-web:
+    image: harbor.bytech.tech/qinghui/qinghui-web:${IMAGE_TAG:?IMAGE_TAG is required}
+    ports:
+      - "${HOST_PORT:-8080}:80"
+    restart: unless-stopped

@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# production build
+/dist/
+
+# local env files
+.env
+
+# misc
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+vite-dev.*.log
+
+# Vite cache
+/.vite/
+
+# editor directories and files
+.vscode/
+.idea/
+.cursor/
+
+# optional coverage output
+coverage/
+package-lock.json
+yarn.lock

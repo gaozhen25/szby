@@ -1,0 +1,36 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Tooling
+.pytest_cache/
+.superpowers/sdd/
+
+# Environment variables
+.env
+.env.bak.*
+
+# Runtime crawler credentials
+cookies/cookies.json
+
+# IDE/editor
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log

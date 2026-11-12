@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+# Linux 服务器生产配置（部署脚本会复制为 linux_server_overrides.py）
+# 本文件仅作示例；实际 overrides 由 deploy 脚本生成，可不提交 git
+
+PLATFORM = "xhs"
+LOGIN_TYPE = "cookie"
+HEADLESS = True
+CDP_HEADLESS = True
+ENABLE_CDP_MODE = True
+SAVE_LOGIN_STATE = True
+SAVE_DATA_OPTION = "json"
+CUSTOM_BROWSER_PATH = "/usr/bin/google-chrome-stable"
+MAX_CONCURRENCY_NUM = 1
+AUTO_CLOSE_BROWSER = True

@@ -1,0 +1,8 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "允许使用相机以拍摄并发送图片消息",
+    "NSPhotoLibraryUsageDescription": "允许访问相册以发送图片消息",
+    "NSPhotoLibraryAddUsageDescription": "允许保存聊天中的图片和视频到相册",
+    "NSMicrophoneUsageDescription": "允许使用麦克风以发送语音消息"
+  }
+}

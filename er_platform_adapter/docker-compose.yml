@@ -1,0 +1,13 @@
+services:
+  gateway_adapter:    
+    image: harbor.bytech.tech/qinghui/gateway_adapter:${IMAGE_TAG:?IMAGE_TAG is required}
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:?HOST_PORT is required}:18088"
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./adapter_gateway_data:/app/adapter_gateway_data
+      - /srv/gateway_adapter/${INSTANCE_NAME:?INSTANCE_NAME is required}/logs:/app/logs
+    environment:
+      TZ: UTC
+      INSTANCE_NAME: "${INSTANCE_NAME}"

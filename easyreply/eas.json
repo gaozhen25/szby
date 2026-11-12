@@ -1,0 +1,40 @@
+{
+  "cli": {
+    "version": ">= 18.0.6",
+    "appVersionSource": "local"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "test",
+        "EXPO_PUBLIC_API_HOST_TEST": "http://101.37.164.211"
+      }
+    },
+    "test": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "test",
+        "EXPO_PUBLIC_API_HOST_TEST": "http://101.37.164.211"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "test",
+        "EXPO_PUBLIC_API_HOST_TEST": "http://101.37.164.211"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "production",
+        "EXPO_PUBLIC_API_HOST_PROD": "https://service.humanlike.life"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

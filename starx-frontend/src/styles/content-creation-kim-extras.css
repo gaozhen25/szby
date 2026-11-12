@@ -1,0 +1,111 @@
+/* Professional-tools modal — body portal (no .kim-creation-shell parent required). */
+
+.kim-extras-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  pointer-events: auto;
+  background: rgba(2, 8, 18, 0.62);
+  backdrop-filter: blur(8px);
+}
+
+.kim-extras-modal {
+  width: min(720px, 94vw);
+  max-height: min(86vh, 820px);
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow-hover);
+  animation: kimExtrasModalIn 0.22s var(--ease-out);
+  pointer-events: auto;
+}
+
+@keyframes kimExtrasModalIn {
+  from {
+    opacity: 0.55;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.kim-extras-header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid var(--card-divider);
+}
+
+.kim-extras-header span {
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.kim-extras-header h3 {
+  margin: 3px 0 0;
+}
+
+.kim-extras-close {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--card-bg-soft);
+  color: var(--text-muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.kim-extras-close:hover {
+  border-color: var(--border-accent-strong, var(--border-accent));
+  color: var(--text-primary);
+}
+
+.kim-extras-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.kim-extras-section {
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+}
+
+.kim-extras-section > h4 {
+  margin: 0 0 var(--space-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kim-extras-modal {
+    animation: none;
+  }
+}

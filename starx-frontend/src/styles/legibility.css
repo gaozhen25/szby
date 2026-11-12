@@ -1,0 +1,207 @@
+/* ═══════════════════════════════════════════════════════════════
+   Cross-module dark-mode legibility (Operate)
+   Loaded after page/module CSS. Prefer secondary for reading copy;
+   keep muted for inactive chrome; status chips use status-*-fg.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Shared reading copy ── */
+.upload-zone,
+.video-analysis-aside pre,
+.shot-breakdown-list span,
+.shot-breakdown-list small,
+.rewrite-reference-list small,
+.insight-arrow,
+.workflow-publish-video-preview-dialog > p,
+.dashboard-empty p,
+.resource-item,
+.topic-page-subtitle,
+.topic-reason,
+.topic-card .type,
+.topic-meta,
+.dashboard-subtitle,
+.dashboard-update-time,
+.dashboard-loading-copy p,
+.dashboard-loading-steps,
+.metric-label,
+.chart-legend,
+.insight-content p,
+.top-content-table th,
+.account-profile-heading p,
+.account-hero-info .hero-subtitle,
+.account-card-desc,
+.account-card-meta-row span:first-child,
+.report-hero-subtitle,
+.report-card-header-text p,
+.similar-account-mini .mini-info small,
+.trending-note .note-reason,
+.target-profile-assumption,
+.competitor-page .competitor-monitor-heading p,
+.competitor-page .monitor-desc,
+.competitor-page .monitor-add-header p,
+.competitor-recent-copy time,
+.toolbox-nav-item small,
+.toolbox-ux-shell .toolbox-panel p,
+.knowledge-modal-ux .knowledge-library-item p,
+.knowledge-modal-ux .knowledge-editor-hint,
+.creation-preference-header p,
+.creation-preference-topic,
+.creation-preference-help,
+.video-director-header p,
+.video-director-kicker,
+.video-script-area-title small,
+.video-script-note,
+.video-shooting-card span,
+.video-shooting-card small,
+.video-package-notes,
+.video-regenerate-confirm > p,
+.studio-stage-hint,
+.studio-empty-stage,
+.link-reference-card small,
+.link-reference-desc,
+.history-list small,
+.final-prompt-text,
+.prompt-tab small,
+.tag-category-desc,
+.selected-tags-info,
+.result-variant-card .variant-label,
+.chat-bubble.assistant,
+.upload-hint,
+.workflow-header p,
+.workflow-meta-line,
+.workflow-preview,
+.workflow-script,
+.workflow-task-meta,
+.workflow-task-submeta,
+.workflow-note,
+.workflow-history-item small,
+.workflow-empty,
+.workflow-publish-modal-header p,
+.workflow-publish-platform span,
+.workflow-publish-platform small,
+.workflow-publish-local-upload-copy small,
+.workflow-publish-media-copy small,
+.workflow-publish-empty,
+.workflow-publish-field-hint,
+.workflow-publish-status-header span,
+.workflow-publish-status-header small,
+.workflow-detail-list dt,
+.process-card-meta,
+.process-card-progress,
+.process-detail .platform-label,
+.process-checklist-item .check-assignee,
+.prompt-template-shelf-heading p,
+.prompt-template-option-content small,
+.prompt-template-option-content > span,
+.prompt-template-empty p,
+.creation-reference-heading p,
+.creation-reference-dropzone small,
+.creation-reference-card-foot,
+.creation-reference-safe,
+.kim-creation-shell .prompt-field-heading small,
+.parse-info-card h4,
+.parse-section-header h4,
+.link-generated-variant-label {
+  color: var(--text-secondary) !important;
+}
+
+/* ── Meta / labels: muted floor (already brightened in tokens) ── */
+.account-hero-stat .stat-label,
+.report-updated-at,
+.report-comment-toggle-copy small,
+.report-source-header span,
+.compliance-table th,
+.report-detail-card h4,
+.report-profile-groups h4,
+.field-label,
+.creation-preference-label,
+.video-shooting-details dt,
+.video-regenerate-confirm dt,
+.workflow-publish-fields .field-label em,
+.process-col-header .col-count,
+.workflow-stats > div,
+.workflow-legend,
+.workflow-pagination,
+.process-stat,
+.knowledge-bar-stats {
+  color: var(--text-muted) !important;
+}
+
+/* ── Status / risk text on soft tinted surfaces ── */
+.risk-pill.risk-high,
+.risk-level.risk-high,
+.monitor-status.failed,
+.toast.danger,
+.toast.error,
+.workflow-publish-timeline li.failed,
+.workflow-publish-media-copy em {
+  color: var(--status-danger-fg) !important;
+}
+
+.risk-pill.risk-medium,
+.risk-level.risk-medium,
+.monitor-status.pending,
+.monitor-status.running,
+.toast.warning,
+.workflow-publish-notice.warning,
+.report-notice.warning {
+  color: var(--status-warning-fg) !important;
+}
+
+.risk-pill.risk-low,
+.risk-level.risk-low,
+.monitor-status.succeeded,
+.toast.success,
+.workflow-publish-notice.success,
+.workflow-publish-timeline li.done,
+.wizard-footer .draft-status {
+  color: var(--status-success-fg) !important;
+}
+
+.report-notice.info {
+  color: var(--status-info-fg) !important;
+}
+
+/* ── Empty / helper states should not disappear into the canvas ── */
+.studio-empty-stage strong,
+.competitor-recent-empty,
+.workflow-empty,
+.topic-ux-shell .empty-state,
+.account-report-page .report-empty-state,
+.competitor-page .competitor-empty {
+  color: var(--text-secondary) !important;
+}
+
+/* ── Light theme: keep overrides from washing out dark-only status tints ── */
+[data-theme="light"] .risk-pill.risk-high,
+[data-theme="light"] .risk-level.risk-high,
+[data-theme="light"] .monitor-status.failed,
+[data-theme="light"] .toast.danger,
+[data-theme="light"] .toast.error,
+[data-theme="light"] .workflow-publish-timeline li.failed,
+[data-theme="light"] .workflow-publish-media-copy em {
+  color: var(--status-danger-fg) !important;
+}
+
+[data-theme="light"] .risk-pill.risk-medium,
+[data-theme="light"] .risk-level.risk-medium,
+[data-theme="light"] .monitor-status.pending,
+[data-theme="light"] .monitor-status.running,
+[data-theme="light"] .toast.warning,
+[data-theme="light"] .workflow-publish-notice.warning,
+[data-theme="light"] .report-notice.warning {
+  color: var(--status-warning-fg) !important;
+}
+
+[data-theme="light"] .risk-pill.risk-low,
+[data-theme="light"] .risk-level.risk-low,
+[data-theme="light"] .monitor-status.succeeded,
+[data-theme="light"] .toast.success,
+[data-theme="light"] .workflow-publish-notice.success,
+[data-theme="light"] .workflow-publish-timeline li.done,
+[data-theme="light"] .wizard-footer .draft-status {
+  color: var(--status-success-fg) !important;
+}
+
+[data-theme="light"] .report-notice.info {
+  color: var(--status-info-fg) !important;
+}

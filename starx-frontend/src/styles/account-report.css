@@ -1,0 +1,1380 @@
+/* Account Report — editorial UX shell (scoped refinements). */
+
+.account-report-ux-shell {
+  min-width: 0;
+  color: var(--text-primary);
+}
+
+.account-report-ux-shell .report-masthead,
+.account-report-ux-shell .report-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 0 18px;
+  padding: 18px 20px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 55%),
+    var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.account-report-ux-shell .report-masthead::before,
+.account-report-ux-shell .report-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-primary) 85%, transparent),
+    color-mix(in srgb, var(--color-primary) 20%, transparent)
+  );
+}
+
+.account-report-ux-shell .report-masthead-copy,
+.account-report-ux-shell .report-hero > div:first-child {
+  position: relative;
+  min-width: 0;
+  flex: 1;
+}
+
+.account-report-ux-shell .report-kicker {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.account-report-ux-shell .report-hero h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.account-report-ux-shell .report-hero .hl {
+  color: var(--color-primary);
+}
+
+.account-report-ux-shell .report-hero-subtitle {
+  margin: 8px 0 0;
+  max-width: 52ch;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.account-report-ux-shell .report-hero-actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px 12px;
+  flex-shrink: 0;
+}
+
+.account-report-ux-shell .report-updated-at,
+.account-report-ux-shell .report-hero-actions > span,
+.account-report-ux-shell .report-source-header span {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.account-report-ux-shell .report-comment-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  background: var(--card-bg-soft);
+}
+
+.account-report-ux-shell .report-export-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background: var(--card-bg-soft);
+}
+
+.account-report-ux-shell .report-export-button {
+  min-height: 32px;
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.account-report-ux-shell .report-comment-toggle-copy {
+  display: grid;
+  gap: 2px;
+  max-width: 220px;
+}
+
+.account-report-ux-shell .report-comment-toggle-copy strong {
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.account-report-ux-shell .report-comment-toggle-copy small {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.account-report-ux-shell .report-comment-switch {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 1px solid var(--border-medium);
+  border-radius: 999px;
+  background: var(--bg-input);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.account-report-ux-shell .report-comment-switch span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.account-report-ux-shell .report-comment-switch[aria-checked="true"] {
+  border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+.account-report-ux-shell .report-comment-switch[aria-checked="true"] span {
+  transform: translateX(16px);
+  background: var(--color-primary);
+}
+
+.account-report-ux-shell .report-comment-switch:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.account-report-ux-shell .report-comment-switch:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Editorial grid: top pair + full-bleed reading rows */
+.account-report-ux-shell .report-grid,
+.account-report-ux-shell .report-grid-editorial {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 22px;
+}
+
+.account-report-ux-shell .report-grid-top {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.account-report-ux-shell .report-grid-wide {
+  min-width: 0;
+}
+
+.account-report-ux-shell .report-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 18px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+  animation: report-card-enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.account-report-ux-shell .report-grid-top > :nth-child(2),
+.account-report-ux-shell .report-grid-wide:nth-of-type(2) .report-card,
+.account-report-ux-shell .report-grid-wide:nth-of-type(3) .report-card {
+  animation-delay: 60ms;
+}
+
+.account-report-ux-shell .report-grid-wide:nth-of-type(3) .report-card {
+  animation-delay: 120ms;
+}
+
+@keyframes report-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.account-report-ux-shell .report-card:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--card-border));
+  box-shadow: var(--card-shadow-hover, var(--card-shadow));
+}
+
+.account-report-ux-shell .report-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.account-report-ux-shell .report-card-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-report-ux-shell .report-section-regenerate {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.account-report-ux-shell .report-card-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, var(--border-subtle));
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  font-size: 16px;
+}
+
+.account-report-ux-shell .report-card-header-text h3 {
+  margin: 0 0 4px;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.account-report-ux-shell .report-card-header-text p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.account-report-ux-shell .report-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-report-ux-shell .report-card-action {
+  margin-top: 14px;
+  align-self: flex-start;
+}
+
+/* Similar account mini rows */
+.account-report-ux-shell .similar-account-mini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--card-divider);
+}
+
+.account-report-ux-shell .similar-account-mini:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.account-report-ux-shell .similar-account-mini:first-child {
+  padding-top: 0;
+}
+
+.account-report-ux-shell .similar-account-mini .mini-avatar,
+.account-report-ux-shell .creator-avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+  font-size: 13px;
+}
+
+.account-report-ux-shell .creator-avatar > img,
+.account-report-ux-shell .creator-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+}
+
+.account-report-ux-shell .creator-avatar > img {
+  object-fit: cover;
+  background: var(--bg-input);
+}
+
+.account-report-ux-shell .similar-account-mini .mini-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-report-ux-shell .report-add-competitor {
+  flex: 0 0 auto;
+  border-color: color-mix(in srgb, var(--color-primary) 38%, var(--border-subtle));
+  color: var(--color-primary);
+}
+
+.account-report-ux-shell .report-add-competitor:disabled {
+  opacity: .55;
+}
+
+.account-report-ux-shell .report-add-competitor.is-compact {
+  padding-inline: 8px;
+  white-space: nowrap;
+}
+
+.account-report-ux-shell .similar-account-mini .mini-name {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.account-report-ux-shell .similar-account-mini .mini-info small {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.account-report-ux-shell .similar-account-mini .mini-rep-contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.account-report-ux-shell .similar-account-mini .mini-rep-contents span {
+  max-width: 100%;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--surface-2, #f3f4f6) 88%, transparent);
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-report-ux-shell .similar-account-mini .mini-tag,
+.account-report-ux-shell .platform-readable-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: 6px;
+  padding: 2px 7px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--border-subtle));
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.3;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.account-report-ux-shell .report-detail-title .platform-readable-tag,
+.account-report-ux-shell .note-meta .platform-readable-tag {
+  margin-left: 0;
+}
+
+/* Risk pills */
+.account-report-ux-shell .risk-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.account-report-ux-shell .risk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.35;
+}
+
+.account-report-ux-shell .risk-pill .risk-icon {
+  flex: 0 0 auto;
+  font-size: 12px;
+}
+
+.account-report-ux-shell .risk-pill.risk-high,
+.account-report-ux-shell .risk-level.risk-high {
+  border: 1px solid color-mix(in srgb, var(--color-accent-red) 42%, transparent);
+  background: color-mix(in srgb, var(--color-accent-red) 16%, transparent);
+  color: var(--status-danger-fg);
+}
+
+.account-report-ux-shell .risk-pill.risk-medium,
+.account-report-ux-shell .risk-level.risk-medium {
+  border: 1px solid color-mix(in srgb, var(--color-accent-gold) 42%, transparent);
+  background: color-mix(in srgb, var(--color-accent-gold) 16%, transparent);
+  color: var(--status-warning-fg);
+}
+
+.account-report-ux-shell .risk-pill.risk-low,
+.account-report-ux-shell .risk-level.risk-low {
+  border: 1px solid color-mix(in srgb, var(--color-accent-green) 42%, transparent);
+  background: color-mix(in srgb, var(--color-accent-green) 16%, transparent);
+  color: var(--status-success-fg);
+}
+
+/* Target profile — full-width reading */
+.account-report-ux-shell .target-profile-categories {
+  display: grid;
+  gap: 14px;
+}
+
+.account-report-ux-shell .target-profile-assumption {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--card-bg-soft);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.account-report-ux-shell .target-profile-category {
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--card-bg-soft);
+}
+
+.account-report-ux-shell .target-profile-category h4,
+.account-report-ux-shell .target-profile-conclusion h4 {
+  margin: 0 0 10px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.account-report-ux-shell .target-profile-motivation {
+  margin: 0 0 12px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.account-report-ux-shell .target-profile-genders {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.account-report-ux-shell .target-profile-genders > div {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-input);
+}
+
+.account-report-ux-shell .target-profile-genders strong {
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.account-report-ux-shell .target-profile-genders .expandable-text,
+.account-report-ux-shell .target-profile-conclusion .expandable-text {
+  margin-top: 6px;
+}
+
+.account-report-ux-shell .target-profile-genders p,
+.account-report-ux-shell .target-profile-conclusion p {
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.account-report-ux-shell .target-profile-conclusion {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--card-bg-soft);
+}
+
+.account-report-ux-shell .target-profile-conclusion ol {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.account-report-ux-shell .target-profile-upgrade-notice {
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 35%, var(--border-subtle));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.account-report-ux-shell .target-profile-upgrade-notice strong {
+  color: var(--color-primary);
+  font-size: 14px;
+}
+
+.account-report-ux-shell .target-profile-upgrade-notice p {
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Expandable clamps */
+.account-report-ux-shell .expandable-text {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  min-width: 0;
+  color: inherit;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.account-report-ux-shell .expandable-text.is-expanded {
+  display: block;
+}
+
+.account-report-ux-shell .expandable-text-body {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+}
+
+.account-report-ux-shell .expandable-text-body.is-clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--expandable-lines, 2);
+  overflow: hidden;
+}
+
+.account-report-ux-shell .expandable-text-body.is-expanded {
+  display: inline;
+  overflow: visible;
+}
+
+.account-report-ux-shell .expandable-text-toggle {
+  appearance: none;
+  flex: 0 0 auto;
+  align-self: flex-end;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-primary);
+  font: inherit;
+  font-size: inherit;
+  font-weight: 650;
+  line-height: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.account-report-ux-shell .expandable-text-toggle:hover {
+  text-decoration: underline;
+}
+
+.account-report-ux-shell .expandable-text.is-expanded .expandable-text-toggle {
+  display: inline;
+  margin-left: 4px;
+}
+
+.account-report-ux-shell .expandable-block {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.account-report-ux-shell .expandable-block-body {
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.account-report-ux-shell .expandable-block-body > :first-child {
+  margin-top: 0;
+}
+
+.account-report-ux-shell .expandable-block-body.is-clamped {
+  max-height: calc(1.7em * var(--expandable-lines, 2) + 4px);
+  overflow: hidden;
+}
+
+.account-report-ux-shell .expandable-block-body.is-expanded {
+  max-height: none;
+  overflow: visible;
+}
+
+.account-report-ux-shell .expandable-block-toggle {
+  appearance: none;
+  justify-self: end;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-primary);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.account-report-ux-shell .expandable-block-toggle:hover {
+  text-decoration: underline;
+}
+
+/* Hot contents — two-column on wide row */
+.account-report-ux-shell .report-hot-content-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.account-report-ux-shell .trending-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--card-bg-soft);
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.account-report-ux-shell .trending-note:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--border-subtle));
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--card-bg-soft));
+  transform: translateY(-1px);
+}
+
+.account-report-ux-shell .trending-note .note-thumb {
+  position: relative;
+  width: 68px;
+  height: 90px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--bg-input);
+  display: grid;
+  place-items: center;
+}
+
+.account-report-ux-shell .trending-note .note-thumb > span {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.account-report-ux-shell .trending-note .note-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.account-report-ux-shell .trending-note-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+}
+
+.account-report-ux-shell .trending-note .note-body,
+.account-report-ux-shell .trending-note .report-safe-link {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: flex-start;
+}
+
+.account-report-ux-shell .trending-note .note-title {
+  min-width: 0;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.account-report-ux-shell .trending-note .note-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.account-report-ux-shell .trending-note .note-meta .platform-readable-tag {
+  flex-shrink: 0;
+}
+
+.account-report-ux-shell .trending-note .note-reason {
+  display: block;
+  width: 100%;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 450;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.account-report-ux-shell .trending-note .report-metrics {
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.account-report-ux-shell .report-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.account-report-ux-shell .report-metrics span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.account-report-ux-shell .report-metrics .report-metric-icon {
+  color: var(--color-primary);
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.95;
+}
+
+.account-report-ux-shell .report-metrics b {
+  color: var(--text-primary);
+  font-weight: 650;
+}
+
+.account-report-ux-shell .report-safe-link {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.account-report-ux-shell .report-safe-link:hover .note-title {
+  color: var(--color-primary);
+}
+
+.account-report-ux-shell .creator-profile-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  text-underline-offset: 3px;
+}
+
+.account-report-ux-shell .creator-profile-link:hover {
+  color: var(--color-primary);
+}
+
+.account-report-ux-shell .creator-profile-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Source / CTA / empty */
+.account-report-ux-shell .report-source-notices {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card-bg-soft);
+}
+
+.account-report-ux-shell .report-source-header,
+.account-report-ux-shell .report-source-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 14px;
+}
+
+.account-report-ux-shell .report-source-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.account-report-ux-shell .report-source-meta {
+  justify-content: flex-start;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.account-report-ux-shell .report-source-meta span {
+  padding-right: 12px;
+  border-right: 1px solid var(--card-divider);
+}
+
+.account-report-ux-shell .report-source-meta span:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.account-report-ux-shell .report-notice {
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.account-report-ux-shell .report-notice.info {
+  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--status-info-fg);
+}
+
+.account-report-ux-shell .report-notice.warning {
+  border: 1px solid color-mix(in srgb, var(--color-accent-gold) 36%, transparent);
+  background: color-mix(in srgb, var(--color-accent-gold) 12%, transparent);
+  color: var(--status-warning-fg);
+}
+
+.account-report-ux-shell .report-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--card-border));
+  border-radius: var(--card-radius);
+  background:
+    radial-gradient(90% 120% at 100% 0%, color-mix(in srgb, var(--color-primary) 12%, transparent), transparent 50%),
+    var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.account-report-ux-shell .report-cta-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.account-report-ux-shell .report-cta-icon {
+  color: var(--color-primary);
+  font-size: 18px;
+}
+
+.account-report-ux-shell .report-empty-state {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin: 28px auto;
+  padding: 36px 24px;
+  max-width: 560px;
+  text-align: center;
+  border: 1px dashed var(--border-medium);
+  border-radius: var(--card-radius);
+  background: var(--card-bg-soft);
+}
+
+.account-report-ux-shell .report-empty-state > span {
+  font-size: 34px;
+}
+
+.account-report-ux-shell .report-empty-state h3 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.account-report-ux-shell .report-empty-state p {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.account-report-ux-shell .report-empty-inline {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--card-bg-soft);
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.account-report-ux-shell .report-loading-slot {
+  margin: 0 0 18px;
+}
+
+.account-report-ux-shell .report-loading-slot .loading-overlay-embedded {
+  border-radius: var(--card-radius);
+}
+
+.account-report-ux-shell .report-progress-banner,
+.account-report-ux-shell .report-section-loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--card-bg-soft);
+}
+
+.account-report-ux-shell .report-progress-banner > div,
+.account-report-ux-shell .report-section-loading > div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.account-report-ux-shell .report-progress-banner strong,
+.account-report-ux-shell .report-section-loading strong {
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.account-report-ux-shell .report-progress-banner small,
+.account-report-ux-shell .report-section-loading small {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.account-report-ux-shell .report-progress-banner-spinner,
+.account-report-ux-shell .report-section-loading-spinner {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  color: var(--color-primary);
+  animation: report-spin 1.4s linear infinite;
+}
+
+@keyframes report-spin {
+  to { transform: rotate(360deg); }
+}
+
+.account-report-ux-shell .report-back-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.account-report-ux-shell .report-back-nav:hover {
+  color: var(--color-primary);
+}
+
+.account-report-ux-shell .report-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.account-report-ux-shell .report-detail-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-width: 0;
+  overflow: hidden;
+  padding: 16px 18px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.account-report-ux-shell .report-detail-title {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  min-width: 0;
+  gap: 10px;
+}
+
+.account-report-ux-shell .report-detail-title > div {
+  min-width: 0;
+}
+
+.account-report-ux-shell .report-detail-title > .report-similar-list-avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+}
+
+.account-report-ux-shell .report-detail-title h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.account-report-ux-shell .report-detail-title small,
+.account-report-ux-shell .report-detail-card p {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.account-report-ux-shell .report-similar-account-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.account-report-ux-shell .report-manual-tag {
+  padding: 1px 7px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-purple) 40%, transparent);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-accent-purple) 12%, transparent);
+  color: var(--color-accent-purple) !important;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.account-report-ux-shell .report-similar-delete {
+  flex: 0 0 auto;
+}
+
+.account-report-ux-shell .report-similar-actions {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-self: start;
+  max-width: 100%;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.account-report-ux-shell .report-similar-actions .btn {
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account-report-ux-shell .report-detail-card h4,
+.account-report-ux-shell .report-profile-groups h4 {
+  margin: 0 0 6px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.account-report-ux-shell .profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  max-width: 100%;
+  gap: 6px;
+}
+
+.account-report-ux-shell .profile-tag {
+  display: inline-flex;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg-soft);
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.account-report-ux-shell .report-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.account-report-ux-shell .compliance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.account-report-ux-shell .compliance-table th {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--card-divider);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.account-report-ux-shell .compliance-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--card-divider);
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.account-report-ux-shell .compliance-table .risk-level {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Similar account modal helpers (class names used outside shell wrappers too) */
+.report-similar-modal > p {
+  margin: calc(-1 * var(--space-md)) 0 var(--space-lg);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.report-similar-modal label {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.report-similar-form-error {
+  margin-top: var(--space-md);
+  color: var(--color-accent-red);
+  font-size: var(--text-sm);
+}
+
+.report-similar-resolved > p {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.report-similar-profile-card {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+  padding: var(--space-md);
+  margin: var(--space-md) 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--card-bg-soft);
+}
+
+.report-similar-profile-card > img,
+.report-similar-avatar-fallback {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.report-similar-avatar-fallback {
+  display: grid;
+  place-items: center;
+  color: var(--text-primary);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  background: color-mix(in srgb, var(--color-primary) 35%, var(--bg-input));
+}
+
+.report-similar-profile-card h4 {
+  margin: 0 0 var(--space-xs);
+}
+
+.report-similar-profile-card p {
+  margin: var(--space-sm) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.report-similar-profile-card small {
+  display: block;
+  margin-top: var(--space-xs);
+  color: var(--text-secondary);
+}
+
+.report-similar-resolved-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.report-similar-resolved-metrics span {
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  background: var(--card-bg-soft);
+}
+
+.report-similar-resolved-metrics b {
+  display: block;
+  color: var(--text-primary);
+  font-size: var(--text-base);
+}
+
+.report-similar-delete-modal > p {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .account-report-ux-shell .report-card,
+  .account-report-ux-shell .trending-note,
+  .account-report-ux-shell .report-progress-banner-spinner,
+  .account-report-ux-shell .report-section-loading-spinner {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .account-report-ux-shell .report-grid-top,
+  .account-report-ux-shell .report-hot-content-list {
+    grid-template-columns: 1fr;
+  }
+
+  .account-report-ux-shell .report-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .account-report-ux-shell .target-profile-genders {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .account-report-ux-shell .report-hero,
+  .account-report-ux-shell .report-hero-actions,
+  .account-report-ux-shell .report-cta {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .account-report-ux-shell .report-hero-actions .btn {
+    width: 100%;
+  }
+
+  .account-report-ux-shell .report-export-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .account-report-ux-shell .report-comment-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .account-report-ux-shell .report-comment-toggle-copy {
+    max-width: none;
+  }
+
+  .account-report-ux-shell .report-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .account-report-ux-shell .report-card,
+  .account-report-ux-shell .report-detail-card {
+    padding: 14px 16px;
+  }
+
+  .account-report-ux-shell .trending-note .note-thumb {
+    width: 58px;
+    height: 78px;
+  }
+
+  .account-report-ux-shell .trending-note .note-meta {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .account-report-ux-shell .compliance-table {
+    min-width: 720px;
+  }
+}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5f7f9" />
+  <title>Gallery 后台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/theme.css?v=1" />
+  <link rel="stylesheet" href="/static/admin.css?v=19" />
+</head>
+<body>
+  <a class="skip" href="#view-library">跳到素材</a>
+  <section id="login" class="login-page">
+    <aside class="login-brand">
+      <div>
+        <p class="brand-mark" translate="no">Gallery</p>
+        <p class="brand-desc">把抖音和小红书分享文案收进素材库。一篇作品拆成一张图或一个视频。</p>
+        <ul class="brand-points">
+          <li>一行一个作品，封面按素材顺序排</li>
+          <li>搜索按每一张图、每一个视频匹配</li>
+          <li>文件放在私有 OSS，页面只给本站地址</li>
+        </ul>
+      </div>
+      <p class="brand-copy">Gallery</p>
+    </aside>
+    <div class="login-main">
+      <form id="login-form" class="login-card">
+        <h1>登录</h1>
+        <p>使用用户名和密码进入后台</p>
+        <label for="username">用户名</label>
+        <input id="username" name="username" type="text" autocomplete="username" spellcheck="false" required />
+        <label for="password">密码</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" spellcheck="false" required />
+        <button type="submit">登录</button>
+        <p id="login-error" class="error" role="alert"></p>
+      </form>
+    </div>
+  </section>
+
+  <div id="shell" class="layout hidden">
+    <aside class="sider">
+      <a class="logo" href="/admin" translate="no">Gallery</a>
+      <nav class="menu">
+        <button type="button" class="nav-btn menu-item on" data-view="library">素材库</button>
+        <button type="button" class="nav-btn menu-item" data-view="ingest">解析入库</button>
+        <button type="button" class="nav-btn menu-item" data-view="api">接口</button>
+      </nav>
+    </aside>
+    <div class="layout-right">
+      <header class="layout-header">
+        <div class="crumbs">后台 / <span id="crumb-current">素材库</span></div>
+        <div class="header-right">
+          <a href="/">前台</a>
+          <button type="button" id="logout">退出登录</button>
+        </div>
+      </header>
+      <div class="tabs-view">
+        <button type="button" class="nav-btn tab on" data-view="library">素材库</button>
+        <button type="button" class="nav-btn tab" data-view="ingest">解析入库</button>
+        <button type="button" class="nav-btn tab" data-view="api">接口</button>
+      </div>
+      <div class="content">
+      <div id="oss-banner" class="banner hidden"></div>
+
+      <section id="view-library" class="view">
+        <div class="search-card">
+          <p class="card-title">搜索</p>
+          <form id="filters" class="filters">
+            <input id="q" name="q" type="search" autocomplete="off" aria-label="搜索文案、作者、行业、作品编号或原始标签" placeholder="搜索文案、作者、行业、作品编号或原始标签…" />
+            <select id="industry" name="industry" aria-label="所属行业">
+              <option value="">全部行业</option>
+            </select>
+            <select id="platform" name="platform" aria-label="平台">
+              <option value="">全部平台</option>
+              <option value="douyin">抖音</option>
+              <option value="xhs">小红书</option>
+            </select>
+            <select id="type" name="type" aria-label="类型">
+              <option value="">全部类型</option>
+              <option value="image">图片</option>
+              <option value="video">视频</option>
+            </select>
+          </form>
+          <div id="stats" class="stats"></div>
+        </div>
+        <div class="table-card">
+        <div class="sheet">
+          <table>
+            <colgroup>
+              <col class="c-when" />
+              <col class="c-who" />
+              <col class="c-title" />
+              <col class="c-industry" />
+              <col class="c-work" />
+              <col class="c-tags" />
+              <col class="c-state" />
+              <col class="c-link" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>作者</th>
+                <th>标题</th>
+                <th>行业</th>
+                <th>作品</th>
+                <th>标签</th>
+                <th>状态</th>
+                <th>链接</th>
+              </tr>
+            </thead>
+            <tbody id="grid"></tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <button type="button" id="clear-source" class="ghost hidden">看全部素材</button>
+          <span id="page-label"></span>
+          <button type="button" id="prev" disabled>上一页</button>
+          <button type="button" id="next" disabled>下一页</button>
+        </div>
+        </div>
+      </section>
+
+      <section id="view-ingest" class="view hidden">
+        <form id="ingest-form" class="panel">
+          <label class="sr" for="ingest-text">分享文案</label>
+          <textarea id="ingest-text" name="text" rows="12" autocomplete="off" spellcheck="false" placeholder="粘贴抖音或小红书分享文案…"></textarea>
+          <div class="row-actions">
+            <button type="submit" id="ingest-go">解析并保存</button>
+            <span id="ingest-status" class="muted"></span>
+          </div>
+        </form>
+        <div id="ingest-results" class="results"></div>
+      </section>
+
+      <section id="view-api" class="view hidden">
+        <article class="panel api-card">
+          <div class="api-head">
+            <h2>批量解析并入库</h2>
+            <button type="button" class="ghost" data-copy="api-parse">复制这段</button>
+          </div>
+          <pre id="api-parse"></pre>
+          <div class="api-head">
+            <h2>读取素材库</h2>
+            <button type="button" class="ghost" data-copy="api-library">复制这段</button>
+          </div>
+          <pre id="api-library"></pre>
+        </article>
+      </section>
+      </div>
+    </div>
+  </div>
+
+  <dialog id="detail" aria-labelledby="detail-title">
+    <article class="detail-sheet">
+      <header class="detail-bar">
+        <span class="vk">单个作品</span>
+        <button type="button" id="detail-close" class="ghost">关闭</button>
+      </header>
+      <div class="vfield">
+        <span class="vk">日期</span>
+        <p id="detail-when"></p>
+      </div>
+      <div class="vfield">
+        <span class="vk">作者</span>
+        <p id="detail-who"></p>
+      </div>
+      <div class="vfield">
+        <span class="vk">标题</span>
+        <h2 id="detail-title"></h2>
+      </div>
+      <div class="vfield">
+        <span class="vk">作品</span>
+        <div id="detail-works" class="vcovers"></div>
+      </div>
+      <div class="vfield">
+        <span class="vk">标签</span>
+        <div id="detail-tags" class="chips"></div>
+      </div>
+      <div class="vfield">
+        <span class="vk">所属行业</span>
+        <p id="detail-industry-view"></p>
+      </div>
+      <div class="vfield">
+        <span class="vk">状态</span>
+        <div id="detail-state"></div>
+        <p id="detail-store" class="store-note"></p>
+      </div>
+      <div class="vfield">
+        <span class="vk">链接</span>
+        <p id="detail-link"></p>
+      </div>
+      <h3>评论</h3>
+      <div id="detail-comments" class="comments"></div>
+        <label for="detail-industry">所属行业</label>
+        <input id="detail-industry" type="text" maxlength="40" placeholder="例如 美妆、健身、教育" />
+        <label for="detail-category">分类</label>
+        <input id="detail-category" type="text" maxlength="40" placeholder="例如 人物、产品、封面" />
+        <label for="detail-note">备注</label>
+        <textarea id="detail-note" rows="3"></textarea>
+        <div class="row-actions">
+          <button type="button" id="detail-save" disabled>保存</button>
+          <button type="button" id="detail-delete" class="danger">删除</button>
+          <span id="detail-status" class="muted"></span>
+        </div>
+        <h3>文件</h3>
+        <ul id="detail-files" class="file-list"></ul>
+    </article>
+  </dialog>
+  <script type="module" src="/static/admin.js?v=28"></script>
+</body>
+</html>

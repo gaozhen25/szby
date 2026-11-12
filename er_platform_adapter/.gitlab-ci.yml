@@ -1,0 +1,60 @@
+include:
+  - project: devops/ci-templates
+    ref: v1.7.0
+    file:
+      - /common.yml
+      - /rules.yml
+      - /targets.yml
+      - /profiles.yml
+      - /docker-build.yml
+      - /compose-deploy.yml
+      - /compose-rollback.yml
+#####以上固定这么写，以下是要变的######
+
+variables:
+  IMAGE_NAME: harbor.bytech.tech/qinghui/gateway_adapter #你的项目的镜像，不要写tag，docker-compose.yml里的镜像这样写：harbor.bytech.tech/qinghui/xxxx:${IMAGE_TAG:?IMAGE_TAG is required}
+  DEPLOY_PATH: /home/ubuntu/projects/gateway_adapter  #你的项目的路径，固定“/home/ubuntu/projects/”开头
+  COMPOSE_FILE: docker-compose.yml  #docker-compose配置文件名
+  BUILD_ENV: "test"
+
+#测试实例，不部署测试环境就删掉这个stage
+deploy-test: #stage名称，会显示在流水线里
+  extends: 
+    - .deploy-test-auto #测试stage继承这个
+    - .target-test-test01 #部署的服务器，目标服务器可以看devops/ci-templates项目的targets.yml，里面有各服务器介绍
+
+  #变量
+  variables:
+    INSTANCE_NAME: ga01 #实例名，和同服务器的其他实例名不同就行了，INSTANCE_NAME这个变量名不要变
+    HOST_PORT: "18088" #环境变量，按你实际使用的来，比如 APP_PORT: "10008"
+    #还需要其他变量就继续在这里加
+
+
+#生产实例，可以多个
+deploy-prod-ga01:
+  extends: 
+    - .deploy-production-manual #生产实例继承这个
+    - .target-prod-zyfw
+
+  needs:
+    - job: docker-build #固定
+      artifacts: true 
+    - job: deploy-test #依赖的测试实例，没有测试就删掉这个job
+      artifacts: false #需要当前job的产物就true，不需要就false，一般false
+
+  variables:
+    INSTANCE_NAME: ga01
+    HOST_PORT: "18088"
+  
+
+#手动回滚，除了继承的rollback-production-manual以外，其它和对应的生产实例一一对应
+rollback-ga01:
+  extends: 
+    - .rollback-production-manual #固定
+    - .target-prod-zyfw 
+
+  variables:
+    INSTANCE_NAME: ga01
+    HOST_PORT: "18088"
+
+

@@ -1,0 +1,488 @@
+/* ═══════════════════════════════════════════════════════════════
+   Splash Screen - dagou.cn.com style
+   ═══════════════════════════════════════════════════════════════ */
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--bg-deep);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.splash-screen.fade-out {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+/* ── Animated Grid Background ── */
+.splash-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 216, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 216, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(500px) rotateX(60deg) translateY(60px); }
+}
+
+/* ── Floating Particles ── */
+.splash-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(0, 216, 255, 0.4);
+  border-radius: 50%;
+  animation: floatParticle 5s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+  0%, 100% { 
+    opacity: 0;
+    transform: translateY(100vh) scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-20vh) scale(1);
+  }
+}
+
+/* ── Main Content ── */
+.splash-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 10;
+}
+
+/* ── Logo ── */
+.splash-logo {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.logo-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.ring-1 {
+  width: 100%;
+  height: 100%;
+  border-top-color: rgba(0, 229, 255, 0.6);
+  animation: spin 3s linear infinite;
+}
+
+.ring-2 {
+  width: 75%;
+  height: 75%;
+  border-bottom-color: rgba(0, 229, 255, 0.4);
+  animation: spin 2s linear infinite reverse;
+}
+
+.ring-3 {
+  width: 50%;
+  height: 50%;
+  border-top-color: rgba(0, 229, 255, 0.3);
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.logo-icon {
+  font-size: 28px;
+  color: var(--color-primary);
+  filter: drop-shadow(0 0 20px rgba(0, 216, 255, 0.8));
+  z-index: 1;
+}
+
+/* ── Brand Name ── */
+.splash-brand {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: 12px;
+  color: #ffffff;
+  text-shadow: 0 0 40px rgba(0, 216, 255, 0.5);
+  margin: 0;
+}
+
+.splash-subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── Large Typing Animation ── */
+.splash-typing-large {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.typing-text-large {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-shadow: 0 0 30px rgba(0, 216, 255, 0.6);
+  letter-spacing: 4px;
+}
+
+.typing-cursor-large {
+  font-size: 48px;
+  color: var(--color-primary);
+  opacity: 0;
+  transition: opacity 0.1s;
+  font-weight: 300;
+}
+
+.typing-cursor-large.visible {
+  opacity: 1;
+}
+
+/* ── Stats Bar ── */
+.splash-stats {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 18px 36px;
+  background: rgba(0, 216, 255, 0.04);
+  border: 1px solid rgba(0, 216, 255, 0.12);
+  border-radius: 12px;
+  margin-top: 28px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.22, 1);
+}
+
+.splash-stats.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.stat-label {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(0, 229, 255, 0.2);
+}
+
+/* ── Start Button Wrapper ── */
+.splash-start-wrapper {
+  position: relative;
+  margin-top: 36px;
+}
+
+/* ── Start Button ── */
+.splash-start-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: transparent;
+  border: 2px solid rgba(0, 216, 255, 0.5);
+  border-radius: 8px;
+  color: var(--color-primary);
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.splash-start-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: btnGlow 2s ease-in-out infinite;
+}
+
+@keyframes btnGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(0, 229, 255, 0.4); }
+}
+
+.splash-start-btn:hover {
+  background: rgba(0, 216, 255, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 50px rgba(0, 216, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.splash-start-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.splash-start-btn:hover svg {
+  transform: translateY(2px);
+}
+
+/* ── Dropdown Menu ── */
+.splash-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  background: var(--card-bg);
+  border: 1px solid rgba(0, 216, 255, 0.2);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 216, 255, 0.1);
+  animation: dropdownIn 0.25s cubic-bezier(0.16, 1, 0.22, 1);
+  z-index: 100;
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px) scale(0.98);
+  }
+}
+
+.splash-dropdown button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.splash-dropdown button:hover {
+  background: rgba(0, 216, 255, 0.08);
+}
+
+.dropdown-icon {
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 216, 255, 0.1);
+  border-radius: 8px;
+  color: var(--color-primary);
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dropdown-content strong {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.dropdown-content small {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Loading Bar ── */
+.splash-loading {
+  width: 180px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.loading-bar {
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-primary), #ffffff);
+  transition: width 1s ease;
+}
+
+/* ── Enter Button ── */
+.splash-enter-btn {
+  margin-top: 36px;
+  padding: 16px 48px;
+  background: rgba(0, 216, 255, 0.08);
+  border: 2px solid rgba(0, 216, 255, 0.4);
+  border-radius: 8px;
+  color: var(--color-primary);
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease 3s both, btnPulse 2.5s ease-in-out infinite 3.5s;
+}
+
+.splash-enter-btn:hover {
+  background: rgba(0, 216, 255, 0.15);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 0 40px rgba(0, 216, 255, 0.4), inset 0 0 20px rgba(0, 216, 255, 0.1);
+  transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.15); }
+  50% { box-shadow: 0 0 35px rgba(0, 229, 255, 0.3); }
+}
+
+/* ── Footer ── */
+.splash-footer {
+  position: absolute;
+  bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* ── Light Theme Contrast ── */
+[data-theme="light"] .splash-screen {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(0, 150, 184, 0.12), transparent 30%),
+    linear-gradient(180deg, #f7fbff 0%, #eaf1f9 100%);
+}
+
+[data-theme="light"] .splash-grid {
+  background-image:
+    linear-gradient(rgba(0, 112, 140, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 112, 140, 0.08) 1px, transparent 1px);
+}
+
+[data-theme="light"] .particle {
+  background: rgba(0, 112, 140, 0.5);
+}
+
+[data-theme="light"] .splash-brand {
+  color: #10233d;
+  text-shadow: 0 0 28px rgba(0, 150, 184, 0.2);
+}
+
+[data-theme="light"] .splash-subtitle {
+  color: #52657d;
+}
+
+[data-theme="light"] .typing-text-large,
+[data-theme="light"] .typing-cursor-large {
+  color: #007f9c;
+  text-shadow: 0 0 24px rgba(0, 150, 184, 0.2);
+}
+
+[data-theme="light"] .splash-stats {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(0, 112, 140, 0.22);
+  box-shadow: 0 14px 36px rgba(21, 45, 72, 0.08);
+}
+
+[data-theme="light"] .stat-number {
+  color: #142941;
+}
+
+[data-theme="light"] .stat-label {
+  color: #5b6d82;
+}
+
+[data-theme="light"] .stat-divider {
+  background: rgba(0, 112, 140, 0.24);
+}
+
+[data-theme="light"] .splash-enter-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 112, 140, 0.55);
+  color: #006f89;
+}
+
+[data-theme="light"] .splash-enter-btn:hover {
+  background: #007f9c;
+  border-color: #007f9c;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 112, 140, 0.22);
+}
+
+[data-theme="light"] .splash-footer {
+  color: #52657d;
+}

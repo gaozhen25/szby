@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5f7f9" />
+  <title>Gallery，抖音和小红书分享链接解析</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/theme.css?v=1" />
+  <link rel="stylesheet" href="/static/app.css?v=15" />
+</head>
+<body>
+  <a class="skip" href="#stage">跳到画面</a>
+  <header class="nav">
+    <a class="brand" href="/" translate="no">Gallery</a>
+    <a class="login-link" href="/admin">后台登录</a>
+  </header>
+
+  <section class="hero" id="stage">
+    <h1>在线解析</h1>
+    <ul class="marks">
+      <li>抖音</li>
+      <li>小红书</li>
+      <li>图片和视频</li>
+    </ul>
+    <form id="form" class="bar">
+      <div class="field">
+        <label class="sr" for="text">分享文案</label>
+        <textarea id="text" name="text" rows="1" autocomplete="off" spellcheck="false" placeholder="在这里粘贴分享文案，例如 https://v.douyin.com/…"></textarea>
+        <button type="button" id="clear" class="clear is-off" aria-label="清空">×</button>
+      </div>
+      <button id="go" type="submit">开始解析</button>
+    </form>
+    <p class="fine">仅解析公开分享链接，供个人备份。版权归原作者。<a href="/docs">接口文档</a></p>
+    <p id="status" class="status" role="status"></p>
+  </section>
+  <section class="below">
+    <div id="result" class="result hidden" aria-live="polite"></div>
+  </section>
+
+  <dialog id="lightbox">
+    <button type="button" id="lightbox-close" class="lightbox-close">关闭</button>
+    <img id="lightbox-img" alt="" />
+  </dialog>
+  <script type="module" src="/static/app.js?v=12"></script>
+</body>
+</html>
